@@ -19,7 +19,7 @@ async function getMedias() {
   };
 }
 
-// -------Cherche les infos du Photographer-------
+// -------Cherche les infos du Photographe-------
 
 function selectInfo(photographers, medias) {
   //let returnId = sessionStorage.selectId;
@@ -29,10 +29,15 @@ function selectInfo(photographers, medias) {
   photographGallery(objetPhotographer, medias);
 }
 
+// ----Trie et affichage des photos par Photographe----
+
 function trieArrayGallerie(medias) {
   let returnId = sessionStorage.selectId;
   let arrayTemp = medias.filter((obj) => obj.photographerId == returnId);
   console.log(arrayTemp);
+  arrayTemp.forEach((element) => {
+    picCard(element).getUserCardGallery();
+  });
 }
 
 // -------création du DOM page Photographer-------
@@ -98,8 +103,6 @@ function photographGallery(data, medias) {
   galleryPicsId.classList.add("galleryPhotographer__gallery");
   galleryPicsId.classList.add(`galleryPhotographer__gallery--${data.id}`);
   galleryName.appendChild(galleryPicsId);
-  const test = medias;
-  picCard(test[7]).getUserCardGallery();
 
   //------ Partie cumul vote------
 
