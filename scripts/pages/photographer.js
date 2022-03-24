@@ -21,12 +21,12 @@ async function getMedias() {
 
 // -------Cherche les infos du Photographer-------
 
-function selectInfo(photographers) {
+function selectInfo(photographers, medias) {
   //let returnId = sessionStorage.selectId;
   let returnIndex = sessionStorage.selectIndex;
   let objetPhotographer = photographers[returnIndex];
   photographHeader(objetPhotographer);
-  photographGallery(objetPhotographer);
+  photographGallery(objetPhotographer, medias);
 }
 
 // -------création du DOM page Photographer-------
@@ -71,7 +71,7 @@ function photographHeader(data) {
 
 // ---------création  Photographer_Gallery---------
 
-function photographGallery(data) {
+function photographGallery(data, medias) {
   const photographMain = document.getElementById("main");
 
   //------ Partie conteneur Gallery ------
@@ -92,6 +92,8 @@ function photographGallery(data) {
   galleryPicsId.classList.add("galleryPhotographer__gallery");
   galleryPicsId.classList.add(`galleryPhotographer__gallery--${data.id}`);
   galleryName.appendChild(galleryPicsId);
+  // const test = medias;
+  // picCard(test[7]).getUserCardGallery();
 
   //------ Partie cumul vote------
 
@@ -105,9 +107,8 @@ function photographGallery(data) {
 
 async function initPhotographer() {
   const { photographers } = await getPhotographers();
-  selectInfo(photographers);
   const { medias } = await getMedias();
-  console.log(medias);
+  selectInfo(photographers, medias);
 }
 
 initPhotographer();
