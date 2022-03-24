@@ -29,6 +29,12 @@ function selectInfo(photographers, medias) {
   photographGallery(objetPhotographer, medias);
 }
 
+function trieArrayGallerie(medias) {
+  let returnId = sessionStorage.selectId;
+  let arrayTemp = medias.filter((obj) => obj.photographerId == returnId);
+  console.log(arrayTemp);
+}
+
 // -------création du DOM page Photographer-------
 
 // ---------création  Photographer_Header---------
@@ -109,6 +115,7 @@ async function initPhotographer() {
   const { photographers } = await getPhotographers();
   const { medias } = await getMedias();
   selectInfo(photographers, medias);
+  trieArrayGallerie(medias);
 }
 
 initPhotographer();
