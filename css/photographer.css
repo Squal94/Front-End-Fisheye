@@ -69,6 +69,39 @@
   margin: auto;
 }
 
+.galleryPhotographer__gallery {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 100px;
+}
+
+.picConteneur {
+  border-radius: 50px;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 20px 0;
+  height: 375px;
+  width: 30%;
+}
+
+.picConteneur img {
+  border-radius: 5px;
+  object-fit: cover;
+  height: 300px;
+  width: 100%;
+}
+
+.picConteneur figcaption {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+  width: 100%;
+}
+
 .modal header {
   justify-content: space-between;
   width: 100%;

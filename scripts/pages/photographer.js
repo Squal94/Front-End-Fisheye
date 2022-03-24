@@ -92,8 +92,8 @@ function photographGallery(data, medias) {
   galleryPicsId.classList.add("galleryPhotographer__gallery");
   galleryPicsId.classList.add(`galleryPhotographer__gallery--${data.id}`);
   galleryName.appendChild(galleryPicsId);
-  // const test = medias;
-  // picCard(test[7]).getUserCardGallery();
+  const test = medias;
+  picCard(test[7]).getUserCardGallery();
 
   //------ Partie cumul vote------
 

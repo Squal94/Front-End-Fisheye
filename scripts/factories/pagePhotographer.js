@@ -1,3 +1,7 @@
+//-Factory pour recuperer toutes les images du photographer affiché-
+
+//- Factory pour le conteneur d'une image de la gallerie -
+
 function picCard(data) {
   const { photographerId, title, image, likes, date, price } = data;
   const pictureSrc = `assets/medias/${photographerId}/${image}`;
@@ -11,12 +15,13 @@ function picCard(data) {
     pic.setAttribute("alt", `Titre de l'image : ${title} ,prise le ${date}.`);
     const figcaption = document.createElement("figcaption");
     const picTitle = document.createElement("p");
-    picTitle.classList.add("picTitle");
+    picTitle.classList.add("pInfo");
     picTitle.textContent = title;
     const coeurLike = document.createElement("div");
     coeurLike.classList.add("coeurLike");
     const like = document.createElement("div");
     like.classList.add("like");
+    like.classList.add("pInfo");
     like.textContent = likes;
     const coeur = document.createElement("div");
     coeur.classList.add("coeur");
