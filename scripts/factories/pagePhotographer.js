@@ -3,10 +3,20 @@
 function trieArrayGallerie(data) {
   let returnId = sessionStorage.selectId;
   let arrayTemp = data.filter((obj) => obj.photographerId == returnId);
-  console.log(arrayTemp);
   arrayTemp.forEach((element) => {
     picCard(element).getUserCardGallery(element);
   });
+}
+
+//---------Factory pour le cumul des likes photographer--------
+
+function cumulLikesPhotographer(data) {
+  let returnId = sessionStorage.selectId;
+  let arrayTemp = data.filter((obj) => obj.photographerId == returnId);
+  let cumulLikes = arrayTemp.reduce((cumulLikes, arrayTemp) => {
+    return cumulLikes + arrayTemp.likes;
+  }, 0);
+  return cumulLikes;
 }
 
 //- Factory pour le conteneur d'une image de la gallerie -

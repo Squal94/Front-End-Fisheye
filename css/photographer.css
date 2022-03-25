@@ -74,7 +74,37 @@
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  margin: 0 100px;
+  margin: 50px 100px;
+}
+
+.galleryPhotographer__galleryTrie {
+  height: 100px;
+  width: 100%;
+  margin: 20px 100px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.galleryPhotographer__galleryTrie label {
+  width: 80px;
+  font-size: 1.1em;
+  font-weight: bolder;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.galleryPhotographer__galleryTrie select {
+  width: 150px;
+  height: 50px;
+  background-color: #901c1c;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #fafafa;
+  color: #fafafa;
+  font-size: 1.1em;
+  font-weight: bolder;
+  border-radius: 5px;
 }
 
 .picConteneur {
@@ -107,6 +137,47 @@
   align-items: center;
   height: 75px;
   width: 100%;
+}
+
+.like {
+  margin-left: 20px;
+}
+
+.coeur {
+  width: 50px;
+}
+
+.galleryPhotographer__cumul {
+  background-color: #d3573c;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  bottom: 0;
+  right: 50px;
+  color: black;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  height: 50px;
+  width: 20%;
+}
+.cumulTotal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  font-weight: bolder;
+  margin-left: 50px;
+}
+
+.prixJour {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: bolder;
+  margin-right: 50px;
 }
 
 .modal header {

@@ -71,7 +71,7 @@ function photographHeader(data) {
 
 // ---------création  Photographer_Gallery---------
 
-function photographGallery(data) {
+function photographGallery(data, medias) {
   const photographMain = document.getElementById("main");
 
   //------ Partie conteneur Gallery ------
@@ -83,22 +83,54 @@ function photographGallery(data) {
   //------ Partie Trie ------
   const galleryTrie = document.createElement("div");
   galleryTrie.classList.add("galleryPhotographer__galleryTrie");
-  galleryTrie.classList.add(`galleryPhotographer__galleryTrie--${data.id}`);
+  galleryTrie.classList.add(`galleryPhotographer__galleryTrie--${medias.id}`);
+  const labelTrie = document.createElement("label");
+  labelTrie.textContent = "Trier par  ";
+  labelTrie.setAttribute("for", "trie");
+  const selectTrie = document.createElement("form");
+  const selectBtn = document.createElement("select");
+  selectBtn.setAttribute("id", "trie");
+  selectBtn.setAttribute("name", "trie");
+  const optionPopularite = document.createElement("option");
+  optionPopularite.setAttribute("value", "popularite");
+  optionPopularite.textContent = "Popularite";
+  const optiondate = document.createElement("option");
+  optiondate.setAttribute("value", "date");
+  optiondate.textContent = "Date";
+  const optiontitle = document.createElement("option");
+  optiontitle.setAttribute("value", "title");
+  optiontitle.textContent = "Title";
+  galleryTrie.appendChild(labelTrie);
+  galleryTrie.appendChild(selectTrie);
+  selectTrie.appendChild(selectBtn);
+  selectBtn.appendChild(optionPopularite);
+  selectBtn.appendChild(optiondate);
+  selectBtn.appendChild(optiontitle);
+
   galleryName.appendChild(galleryTrie);
 
   //------ Partie Gallery ------
 
   const galleryPicsId = document.createElement("div");
   galleryPicsId.classList.add("galleryPhotographer__gallery");
-  galleryPicsId.classList.add(`galleryPhotographer__gallery--${data.id}`);
+  galleryPicsId.classList.add(`galleryPhotographer__gallery--${medias.id}`);
   galleryName.appendChild(galleryPicsId);
 
   //------ Partie cumul vote------
 
   const cumulVote = document.createElement("div");
   cumulVote.classList.add("galleryPhotographer__cumul");
-  cumulVote.classList.add(`galleryPhotographer__cumulVote--${data.id}`);
+  cumulVote.classList.add(`galleryPhotographer__cumulVote--${medias.id}`);
   galleryName.appendChild(cumulVote);
+  const cumulTotal = document.createElement("p");
+  cumulTotal.classList.add("cumulTotal");
+  const cumulLikes = cumulLikesPhotographer(medias);
+  cumulTotal.textContent = cumulLikes;
+  cumulVote.appendChild(cumulTotal);
+  const prixJour = document.createElement("p");
+  prixJour.classList.add("prixJour");
+  prixJour.textContent = `${data.price}€/jour`;
+  cumulVote.appendChild(prixJour);
 }
 
 // ------Initialisation des donnée et du code------

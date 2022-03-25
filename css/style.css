@@ -68,4 +68,7 @@ p {
 .pInfo {
   color: #901c1c;
   font-size: 1.4em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
