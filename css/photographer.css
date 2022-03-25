@@ -93,6 +93,13 @@
   width: 100%;
 }
 
+.picConteneur video {
+  border-radius: 5px;
+  object-fit: cover;
+  height: 300px;
+  width: 100%;
+}
+
 .picConteneur figcaption {
   display: flex;
   flex-flow: row nowrap;

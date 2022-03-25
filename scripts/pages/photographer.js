@@ -29,17 +29,6 @@ function selectInfo(photographers, medias) {
   photographGallery(objetPhotographer, medias);
 }
 
-// ----Trie et affichage des photos par Photographe----
-
-function trieArrayGallerie(medias) {
-  let returnId = sessionStorage.selectId;
-  let arrayTemp = medias.filter((obj) => obj.photographerId == returnId);
-  console.log(arrayTemp);
-  arrayTemp.forEach((element) => {
-    picCard(element).getUserCardGallery();
-  });
-}
-
 // -------création du DOM page Photographer-------
 
 // ---------création  Photographer_Header---------
@@ -82,7 +71,7 @@ function photographHeader(data) {
 
 // ---------création  Photographer_Gallery---------
 
-function photographGallery(data, medias) {
+function photographGallery(data) {
   const photographMain = document.getElementById("main");
 
   //------ Partie conteneur Gallery ------

@@ -1,18 +1,25 @@
-//-Factory pour recuperer toutes les images du photographer affiché-
+//-Factory pour recuperer toutes les images du photographer et les afficher-
+
+function trieArrayGallerie(data) {
+  let returnId = sessionStorage.selectId;
+  let arrayTemp = data.filter((obj) => obj.photographerId == returnId);
+  console.log(arrayTemp);
+  arrayTemp.forEach((element) => {
+    picCard(element).getUserCardGallery(element);
+  });
+}
 
 //- Factory pour le conteneur d'une image de la gallerie -
 
 function picCard(data) {
-  const { photographerId, title, image, likes, date, price } = data;
+  const { photographerId, title, image, likes, date, price, video } = data;
   const pictureSrc = `assets/medias/${photographerId}/${image}`;
+  const videoSrc = `assets/medias/${photographerId}/${video}`;
   const galleryInsert = document.querySelector(".galleryPhotographer__gallery");
 
   function getUserCardGallery() {
     const figure = document.createElement("figure");
     figure.classList.add("picConteneur");
-    const pic = document.createElement("img");
-    pic.setAttribute("src", pictureSrc);
-    pic.setAttribute("alt", `Titre de l'image : ${title} ,prise le ${date}.`);
     const figcaption = document.createElement("figcaption");
     const picTitle = document.createElement("p");
     picTitle.classList.add("pInfo");
@@ -25,24 +32,29 @@ function picCard(data) {
     like.textContent = likes;
     const coeur = document.createElement("div");
     coeur.classList.add("coeur");
+    if (data.video) {
+      const video = document.createElement("video");
+      video.setAttribute("src", videoSrc);
+      video.setAttribute(
+        "alt",
+        `Titre de l'image : ${title} ,prise le ${date}.`
+      );
+      video.setAttribute("controls", "");
+      figure.appendChild(video);
+    } else if (data.image) {
+      const pic = document.createElement("img");
+      pic.setAttribute("src", pictureSrc);
+      pic.setAttribute("alt", `Titre de l'image : ${title} ,prise le ${date}.`);
+      figure.appendChild(pic);
+    }
     galleryInsert.appendChild(figure);
-    figure.appendChild(pic);
     figure.appendChild(figcaption);
     figcaption.appendChild(picTitle);
     figcaption.appendChild(coeurLike);
     coeurLike.appendChild(like);
     coeurLike.appendChild(coeur);
-
-    return figure;
   }
   return {
-    photographerId,
-    pictureSrc,
-    title,
-    image,
-    likes,
-    date,
-    price,
     getUserCardGallery,
   };
 }
