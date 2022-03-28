@@ -111,7 +111,7 @@ function photographGallery(data, medias) {
 
   //------ Partie Gallery ------
 
-  const galleryPicsId = document.createElement("div");
+  const galleryPicsId = document.createElement("nav-tabs");
   galleryPicsId.classList.add("galleryPhotographer__gallery");
   galleryPicsId.classList.add(`galleryPhotographer__gallery--${medias.id}`);
   galleryName.appendChild(galleryPicsId);
@@ -125,7 +125,9 @@ function photographGallery(data, medias) {
   const cumulTotal = document.createElement("p");
   cumulTotal.classList.add("cumulTotal");
   const cumulLikes = cumulLikesPhotographer(medias);
-  cumulTotal.textContent = cumulLikes;
+  const coeurlLikes =
+    "<img src='assets/icons/coeurLikes.png' class='coeurLikes'/>";
+  cumulTotal.innerHTML = `${cumulLikes} ${coeurlLikes}`;
   cumulVote.appendChild(cumulTotal);
   const prixJour = document.createElement("p");
   prixJour.classList.add("prixJour");
@@ -140,6 +142,7 @@ async function initPhotographer() {
   const { medias } = await getMedias();
   selectInfo(photographers, medias);
   trieArrayGallerie(medias);
+  customElements.define("nav-tabs", Tabs);
 }
 
 initPhotographer();

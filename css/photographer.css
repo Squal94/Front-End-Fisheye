@@ -108,7 +108,6 @@
 }
 
 .picConteneur {
-  border-radius: 50px;
   display: flex;
   flex-flow: column nowrap;
   margin: 20px 0;
@@ -143,8 +142,9 @@
   margin-left: 20px;
 }
 
-.coeur {
-  width: 50px;
+.coeurLikes {
+  width: 20px;
+  height: 24px;
 }
 
 .galleryPhotographer__cumul {

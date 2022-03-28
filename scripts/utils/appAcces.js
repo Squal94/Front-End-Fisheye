@@ -82,5 +82,3 @@ class Tabs extends HTMLElement {
     }
   }
 }
-
-//------------Ajout accessibilité lecteur-----------
