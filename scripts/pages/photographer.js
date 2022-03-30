@@ -142,6 +142,7 @@ async function initPhotographer() {
   const { medias } = await getMedias();
   selectInfo(photographers, medias);
   trieArrayGallerie(medias);
+  selectionImageModal();
   customElements.define("nav-tabs", Tabs);
 }
 

@@ -19,12 +19,22 @@ function cumulLikesPhotographer(data) {
   return cumulLikes;
 }
 
+//------------ Factory Modal gallery----------------
+// function selectionImage() {
+//   window.addEventListener("click", () => {
+//     let gallery = document.querySelector("#galleryPhotographer__gallery");
+//   let lienPic = gallery.getElementsByTagName("figure");
+//   console.log(lienPic);
+//     //const test = galleryPhotographer.getAttribut("id");
+//   });
+// }
+// selectionImage();
 //- Factory pour le conteneur d'une image de la gallerie -
 
 function picCard(data) {
-  const { photographerId, title, image, likes, date, price, video } = data;
-  const pictureSrc = `assets/medias/${photographerId}/${image}`;
-  const videoSrc = `assets/medias/${photographerId}/${video}`;
+  const { photographerId, title, image, likes, date, price, video, id } = data;
+  const pictureSrc = `./assets/medias/${photographerId}/${image}`;
+  const videoSrc = `./assets/medias/${photographerId}/${video}`;
   const galleryInsert = document.querySelector(".galleryPhotographer__gallery");
 
   function getUserCardGallery() {
@@ -51,19 +61,27 @@ function picCard(data) {
     const coeurlLikeSecond = `<i class="fas fa-heart"></i>`;
     coeurSecond.innerHTML = coeurlLikeSecond;
     if (data.video) {
+      const aLink = document.createElement("a");
+      aLink.setAttribute("href", videoSrc);
       const video = document.createElement("video");
+      video.classList.add(`${id}`);
       video.setAttribute("src", videoSrc);
       video.setAttribute(
         "alt",
         `Titre de l'image : ${title} ,prise le ${date}.`
       );
       video.setAttribute("controls", "");
-      figure.appendChild(video);
+      figure.appendChild(aLink);
+      aLink.appendChild(video);
     } else if (data.image) {
+      const aLink = document.createElement("a");
+      aLink.setAttribute("href", pictureSrc);
       const pic = document.createElement("img");
+      pic.classList.add(`${id}`);
       pic.setAttribute("src", pictureSrc);
       pic.setAttribute("alt", `Titre de l'image : ${title} ,prise le ${date}.`);
-      figure.appendChild(pic);
+      figure.appendChild(aLink);
+      aLink.appendChild(pic);
     }
     galleryInsert.appendChild(figure);
     figure.appendChild(figcaption);
@@ -77,4 +95,15 @@ function picCard(data) {
   return {
     getUserCardGallery,
   };
+}
+
+function selectionImageModal() {
+  let gallery = document.querySelector(".galleryPhotographer__gallery");
+  let figure = gallery.querySelectorAll(".picConteneur");
+  for (var i = 0; i < figure.length; ++i) {
+    figure[i].onclick = function () {
+      let aLink = this.querySelector("a");
+      console.log(aLink);
+    };
+  }
 }
