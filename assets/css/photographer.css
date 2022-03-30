@@ -1,0 +1,262 @@
+#contact_modal {
+  display: none;
+}
+
+.photograph-header {
+  background-color: #fafafa;
+  height: 300px;
+  margin: 0 100px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-content: center;
+}
+
+.photograph-header article h2 {
+  color: #d3573c;
+  font-size: 56px;
+}
+
+.photograph-header article p {
+  margin: 10px;
+}
+
+.info {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 25px;
+  padding-bottom: 40px;
+}
+
+.photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgPhotographer {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.contact_button {
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal {
+  border-radius: 5px;
+  background-color: #db8876;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px;
+  margin: auto;
+}
+
+.galleryPhotographer__gallery {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 50px 100px;
+}
+
+.galleryPhotographer__galleryTrie {
+  height: 100px;
+  width: 100%;
+  margin: 20px 100px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.galleryPhotographer__galleryTrie label {
+  width: 80px;
+  font-size: 1.1em;
+  font-weight: bolder;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+#trie {
+  width: 150px;
+  height: 50px;
+  background-color: #901c1c;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #fafafa;
+  color: #fafafa;
+  font-size: 1.1em;
+  font-weight: bolder;
+  border-radius: 5px;
+}
+
+#trie option {
+  width: 130px;
+  height: 100px;
+  background-color: #901c1c;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #fafafa;
+}
+.picConteneur {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 20px 0;
+  height: 375px;
+  width: 30%;
+}
+
+.picConteneur img {
+  border-radius: 5px;
+  object-fit: cover;
+  height: 300px;
+  width: 100%;
+}
+
+.picConteneur video {
+  border-radius: 5px;
+  object-fit: cover;
+  height: 300px;
+  width: 100%;
+}
+
+.picConteneur figcaption {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+  width: 100%;
+}
+
+.coeurLike {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.like {
+  margin-left: 20px;
+}
+
+.coeur {
+  width: 25px;
+  height: 24px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.coeurFirst {
+  margin: 5px;
+  font-weight: bolder;
+  color: #901c1c;
+  position: absolute;
+}
+
+.coeurSecond {
+  margin: 5px;
+  color: #901c1c;
+  position: absolute;
+  opacity: 0;
+}
+
+.coeurLikes {
+  width: 20px;
+  height: 24px;
+}
+
+.galleryPhotographer__cumul {
+  background-color: #d3573c;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  bottom: 0;
+  right: 50px;
+  color: black;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  height: 50px;
+  width: 20%;
+}
+.cumulTotal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  font-weight: bolder;
+  margin-left: 50px;
+}
+
+.prixJour {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: bolder;
+  margin-right: 50px;
+}
+
+.modal header {
+  justify-content: space-between;
+  width: 100%;
+}
+
+.modal header img {
+  cursor: pointer;
+}
+
+.modal header h2 {
+  font-size: 64px;
+  font-weight: normal;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form label {
+  color: #312e2e;
+  font-size: 36px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: self-start;
+  margin-bottom: 26px;
+}
+
+form input {
+  width: 100%;
+  height: 68px;
+  border: none;
+  border-radius: 5px;
+}

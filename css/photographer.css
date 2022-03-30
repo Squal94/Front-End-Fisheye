@@ -93,7 +93,7 @@
   align-items: center;
 }
 
-.galleryPhotographer__galleryTrie select {
+#trie {
   width: 150px;
   height: 50px;
   background-color: #901c1c;
@@ -107,6 +107,15 @@
   border-radius: 5px;
 }
 
+#trie option {
+  width: 130px;
+  height: 100px;
+  background-color: #901c1c;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #fafafa;
+}
 .picConteneur {
   display: flex;
   flex-flow: column nowrap;
@@ -138,8 +147,38 @@
   width: 100%;
 }
 
+.coeurLike {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
 .like {
   margin-left: 20px;
+}
+
+.coeur {
+  width: 25px;
+  height: 24px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.coeurFirst {
+  margin: 5px;
+  font-weight: bolder;
+  color: #901c1c;
+  position: absolute;
+}
+
+.coeurSecond {
+  margin: 5px;
+  color: #901c1c;
+  position: absolute;
+  opacity: 0;
 }
 
 .coeurLikes {

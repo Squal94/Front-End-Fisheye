@@ -42,6 +42,14 @@ function picCard(data) {
     like.textContent = likes;
     const coeur = document.createElement("div");
     coeur.classList.add("coeur");
+    const coeurFirst = document.createElement("div");
+    coeurFirst.classList.add("coeurFirst");
+    const coeurlLike = `<i class="far fa-heart"></i>`;
+    coeurFirst.innerHTML = coeurlLike;
+    const coeurSecond = document.createElement("div");
+    coeurSecond.classList.add("coeurSecond");
+    const coeurlLikeSecond = `<i class="fas fa-heart"></i>`;
+    coeurSecond.innerHTML = coeurlLikeSecond;
     if (data.video) {
       const video = document.createElement("video");
       video.setAttribute("src", videoSrc);
@@ -63,6 +71,8 @@ function picCard(data) {
     figcaption.appendChild(coeurLike);
     coeurLike.appendChild(like);
     coeurLike.appendChild(coeur);
+    coeur.appendChild(coeurFirst);
+    coeur.appendChild(coeurSecond);
   }
   return {
     getUserCardGallery,
