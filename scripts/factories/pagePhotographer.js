@@ -40,6 +40,7 @@ function picCard(data) {
   function getUserCardGallery() {
     const figure = document.createElement("figure");
     figure.classList.add("picConteneur");
+    figure.classList.add(photographerId);
     const figcaption = document.createElement("figcaption");
     const picTitle = document.createElement("p");
     picTitle.classList.add("pInfo");
@@ -62,7 +63,6 @@ function picCard(data) {
     coeurSecond.innerHTML = coeurlLikeSecond;
     if (data.video) {
       const aLink = document.createElement("a");
-      aLink.setAttribute("href", videoSrc);
       const video = document.createElement("video");
       video.classList.add(`${id}`);
       video.setAttribute("src", videoSrc);
@@ -75,7 +75,6 @@ function picCard(data) {
       aLink.appendChild(video);
     } else if (data.image) {
       const aLink = document.createElement("a");
-      aLink.setAttribute("href", pictureSrc);
       const pic = document.createElement("img");
       pic.classList.add(`${id}`);
       pic.setAttribute("src", pictureSrc);
@@ -97,13 +96,73 @@ function picCard(data) {
   };
 }
 
-function selectionImageModal() {
+//----------Fonction de detection element au click---------
+
+function selectionImageModal(data) {
   let gallery = document.querySelector(".galleryPhotographer__gallery");
   let figure = gallery.querySelectorAll(".picConteneur");
-  for (var i = 0; i < figure.length; ++i) {
+  for (let i = 0; i < figure.length; ++i) {
     figure[i].onclick = function () {
       let aLink = this.querySelector("a");
-      console.log(aLink);
+      let picLink = aLink.querySelector("img");
+      picId = picLink.getAttribute("class");
+      let returnId = sessionStorage.selectId;
+      let arrayTemp = data.filter((obj) => obj.photographerId == returnId);
+      carrouselModal(picLink, arrayTemp);
     };
   }
+}
+
+//--------- fonction modal picture ------------
+
+function carrouselModal(data, array) {
+  //console.log(array);
+  let indexOfPic = data.getAttribute("class");
+  let titleInArray = array.filter((obj) => obj.id == indexOfPic);
+  //console.log(positionInArray);
+  let positionInArray = array.findIndex((element) => element.id == indexOfPic);
+  console.log(positionInArray);
+  //------------- Création de la modal-----------------
+  const carrouselModal = document.querySelector(".carrousel");
+  const carrouselConteneur = document.createElement("div");
+  carrouselConteneur.classList.add("carrouselConteneur");
+  const closeCarrousel = document.createElement("a");
+  closeCarrousel.classList.add("closeCarrousel");
+  const mainPicConteneur = document.createElement("div");
+  mainPicConteneur.classList.add("mainPicConteneur");
+  const left = document.createElement("img");
+  left.classList.add("left");
+  left.innerHTML = `<i class="fa-solid fa-angle-left"></i>`;
+  const mainPic = document.createElement("img");
+  mainPic.classList.add("mainPic");
+  mainPic.setAttribute("src", data.src);
+  const right = document.createElement("img");
+  right.classList.add("right");
+  right.innerHTML = `<i class="fa-solid fa-angle-right"></i>`;
+  const mainPicTitle = document.createElement("h1");
+  mainPicTitle.classList.add("mainPicTitle");
+  mainPicTitle.innerHTML = titleInArray[0].title;
+  carrouselModal.appendChild(carrouselConteneur);
+  carrouselConteneur.appendChild(closeCarrousel);
+  carrouselConteneur.appendChild(mainPicConteneur);
+  mainPicConteneur.appendChild(left);
+  mainPicConteneur.appendChild(mainPic);
+  mainPicConteneur.appendChild(right);
+  carrouselConteneur.appendChild(mainPicTitle);
+  //------------- Fonctionnement de la modal-----------------
+
+  right.addEventListener("click", () => {
+    positionInArray = ++positionInArray;
+    console.log(positionInArray);
+    const picture = `assets/photographers/${array[positionInArray].photographerId}/${array[positionInArray].image}`;
+    mainPic.setAttribute("src", picture);
+    return positionInArray;
+  });
+  left.addEventListener("click", () => {
+    positionInArray = --positionInArray;
+    console.log(positionInArray);
+    const picture = `assets/photographers/${array[positionInArray].photographerId}/${array[positionInArray].image}`;
+    mainPic.setAttribute("src", picture);
+    return positionInArray;
+  });
 }

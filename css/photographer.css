@@ -260,3 +260,40 @@ form input {
   border: none;
   border-radius: 5px;
 }
+
+.carrousel {
+  width: 100%;
+  height: 1000px;
+}
+
+.carrouselConteneur {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainPicConteneur {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 700px;
+}
+
+.mainPic {
+  width: 500px;
+  height: 500px;
+}
+
+.right {
+  width: 100px;
+  height: 100px;
+}
+
+.left {
+  width: 100px;
+  height: 100px;
+}
