@@ -19,17 +19,7 @@ function cumulLikesPhotographer(data) {
   return cumulLikes;
 }
 
-//------------ Factory Modal gallery----------------
-// function selectionImage() {
-//   window.addEventListener("click", () => {
-//     let gallery = document.querySelector("#galleryPhotographer__gallery");
-//   let lienPic = gallery.getElementsByTagName("figure");
-//   console.log(lienPic);
-//     //const test = galleryPhotographer.getAttribut("id");
-//   });
-// }
-// selectionImage();
-//- Factory pour le conteneur d'une image de la gallerie -
+//------- Factory gallery création image par image -------
 
 function picCard(data) {
   const { photographerId, title, image, likes, date, price, video, id } = data;
@@ -108,6 +98,11 @@ function selectionImageModal(data) {
       picId = picLink.getAttribute("class");
       let returnId = sessionStorage.selectId;
       let arrayTemp = data.filter((obj) => obj.photographerId == returnId);
+      //------------Partie launch modal-------------
+      let target = document.querySelector(".carrouselModal");
+      target.style.display = null;
+      target.removeAttribute("aria-hidden");
+      target.setAttribute("aria-modal", true);
       carrouselModal(picLink, arrayTemp);
     };
   }
@@ -123,22 +118,23 @@ function carrouselModal(data, array) {
   let positionInArray = array.findIndex((element) => element.id == indexOfPic);
   console.log(positionInArray);
   //------------- Création de la modal-----------------
-  const carrouselModal = document.querySelector(".carrousel");
+  const carrouselModal = document.querySelector(".carrouselModal");
   const carrouselConteneur = document.createElement("div");
   carrouselConteneur.classList.add("carrouselConteneur");
-  const closeCarrousel = document.createElement("a");
+  const closeCarrousel = document.createElement("img");
   closeCarrousel.classList.add("closeCarrousel");
+  closeCarrousel.setAttribute("src", "assets/icons/xmark-solid.svg");
   const mainPicConteneur = document.createElement("div");
   mainPicConteneur.classList.add("mainPicConteneur");
   const left = document.createElement("img");
   left.classList.add("left");
-  left.innerHTML = `<i class="fa-solid fa-angle-left"></i>`;
+  left.setAttribute("src", "assets/icons/chevron-left-solid.svg");
   const mainPic = document.createElement("img");
   mainPic.classList.add("mainPic");
   mainPic.setAttribute("src", data.src);
   const right = document.createElement("img");
   right.classList.add("right");
-  right.innerHTML = `<i class="fa-solid fa-angle-right"></i>`;
+  right.setAttribute("src", "assets/icons/chevron-right-solid.svg");
   const mainPicTitle = document.createElement("h1");
   mainPicTitle.classList.add("mainPicTitle");
   mainPicTitle.innerHTML = titleInArray[0].title;
@@ -154,15 +150,26 @@ function carrouselModal(data, array) {
   right.addEventListener("click", () => {
     positionInArray = ++positionInArray;
     console.log(positionInArray);
-    const picture = `assets/photographers/${array[positionInArray].photographerId}/${array[positionInArray].image}`;
+    const picture = `assets/medias/${array[positionInArray].photographerId}/${array[positionInArray].image}`;
     mainPic.setAttribute("src", picture);
+    mainPicTitle.innerHTML = array[positionInArray].title;
     return positionInArray;
   });
   left.addEventListener("click", () => {
     positionInArray = --positionInArray;
     console.log(positionInArray);
-    const picture = `assets/photographers/${array[positionInArray].photographerId}/${array[positionInArray].image}`;
+    const picture = `assets/medias/${array[positionInArray].photographerId}/${array[positionInArray].image}`;
     mainPic.setAttribute("src", picture);
+    mainPicTitle.innerHTML = array[positionInArray].title;
     return positionInArray;
+  });
+
+  closeCarrousel.addEventListener("click", () => {
+    console.log("YouHou");
+    let target = document.querySelector(".carrouselModal");
+    target.style.display = "none";
+    target.setAttribute("aria-hidden", true);
+    target.setAttribute("aria-modal", false);
+    target.removeChild(carrouselConteneur);
   });
 }
