@@ -26,6 +26,7 @@ function selectInfo(photographers, medias) {
   let returnIndex = sessionStorage.selectIndex;
   let objetPhotographer = photographers[returnIndex];
   photographHeader(objetPhotographer);
+  modalFormulaire(objetPhotographer);
   photographGallery(objetPhotographer, medias);
 }
 
@@ -143,7 +144,6 @@ async function initPhotographer() {
   selectInfo(photographers, medias);
   trieArrayGallerie(medias);
   selectionImageModal(medias);
-  //carrouselModal();
   customElements.define("nav-tabs", Tabs);
 }
 

@@ -10,7 +10,7 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 90px;
+  height: 180px;
 }
 
 h1 {
