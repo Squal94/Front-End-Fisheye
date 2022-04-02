@@ -260,3 +260,20 @@ function modalFormulaire(data) {
     target.setAttribute("aria-modal", false);
   });
 }
+
+//--------------- Trie par date , popularité, titre ---------------
+
+function selectTrie(data) {
+  let returnId = sessionStorage.selectId;
+  let arrayTemp = data.filter((obj) => obj.photographerId == returnId);
+  console.log(arrayTemp);
+  const selectId = document.getElementById("trie");
+  selectId.addEventListener("click", () => {
+    const selectChoice = selectId.selectedIndex;
+    const ValeurChoice = selectId.options[selectChoice].value;
+    console.log(ValeurChoice);
+  });
+  // const selectChoice = selectId.selectedIndex;
+  // const ValeurChoice = selectId.options[selectChoice].value;
+  // console.log(ValeurChoice);
+}
