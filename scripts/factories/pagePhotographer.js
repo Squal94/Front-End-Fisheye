@@ -271,7 +271,13 @@ function selectTrie(data) {
   selectId.addEventListener("click", () => {
     const selectChoice = selectId.selectedIndex;
     const ValeurChoice = selectId.options[selectChoice].value;
-    console.log(ValeurChoice);
+    if (ValeurChoice == "popularite") {
+      console.log("popularite");
+    } else if (ValeurChoice == "date") {
+      console.log("date");
+    } else if (ValeurChoice == "title") {
+      console.log("title");
+    }
   });
   // const selectChoice = selectId.selectedIndex;
   // const ValeurChoice = selectId.options[selectChoice].value;
