@@ -314,8 +314,8 @@ form .contact_button {
 }
 
 .mainPic {
-  width: 700px;
-  height: 700px;
+  width: 500px;
+  height: 500px;
   object-fit: cover;
   margin-bottom: 0;
 }
@@ -324,6 +324,7 @@ form .contact_button {
   width: 30px;
   height: 30px;
   align-self: flex-end;
+  margin-right: 70px;
 }
 
 .right {
@@ -338,7 +339,7 @@ form .contact_button {
 
 .mainPicTitle {
   color: #901c1c;
-  margin: 20px 0 0 50px;
+  margin: 20px 0 0 150px;
   font-weight: 700;
   font-size: 1.4em;
   padding: 0;
