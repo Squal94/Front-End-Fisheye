@@ -28,6 +28,7 @@ function selectInfo(photographers, medias) {
   photographHeader(objetPhotographer);
   modalFormulaire(objetPhotographer);
   photographGallery(objetPhotographer, medias);
+  selectTrieParOption(medias);
 }
 
 // -------création du DOM page Photographer-------
@@ -143,8 +144,6 @@ async function initPhotographer() {
   const { medias } = await getMedias();
   selectInfo(photographers, medias);
   trieArrayGallerie(medias);
-  selectionImageModal(medias);
-  selectTrieParOption(medias);
   customElements.define("nav-tabs", Tabs);
 }
 

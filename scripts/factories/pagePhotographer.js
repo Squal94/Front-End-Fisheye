@@ -6,6 +6,8 @@ function trieArrayGallerie(data) {
   arrayTemp.forEach((element) => {
     picCard(element).getUserCardGallery(element);
   });
+  selectionImageModal(data);
+  selectTrieParOption(data);
 }
 
 //---------Factory pour le cumul des likes photographer--------
@@ -273,15 +275,16 @@ function selectTrieParOption(data) {
     const selectChoice = selectId.selectedIndex;
     const ValeurChoice = selectId.options[selectChoice].value;
     if (ValeurChoice == "popularite") {
-      trieLikes = arrayTemp.sort((a, b) => (a.likes > b.likes ? 1 : -1));
+      arrayTemp = arrayTemp.sort((a, b) => (a.likes > b.likes ? 1 : -1));
       while (gallery.firstChild) {
         gallery.removeChild(gallery.firstChild);
       }
-      trieLikes.forEach((element) => {
+      arrayTemp.forEach((element) => {
         picCard(element).getUserCardGallery(element);
       });
+      selectionImageModal(arrayTemp);
     } else if (ValeurChoice == "date") {
-      trieDate = arrayTemp.sort(function (a, b) {
+      arrayTemp = arrayTemp.sort(function (a, b) {
         var key1 = new Date(a.date);
         var key2 = new Date(b.date);
         if (key1 < key2) {
@@ -295,11 +298,12 @@ function selectTrieParOption(data) {
       while (gallery.firstChild) {
         gallery.removeChild(gallery.firstChild);
       }
-      trieDate.forEach((element) => {
+      arrayTemp.forEach((element) => {
         picCard(element).getUserCardGallery(element);
       });
+      selectionImageModal(arrayTemp);
     } else if (ValeurChoice == "title") {
-      trieTitle = arrayTemp.sort(function compare(a, b) {
+      arrayTemp = arrayTemp.sort(function compare(a, b) {
         if (a.title < b.title) return -1;
         if (a.title > b.title) return 1;
         return 0;
@@ -307,9 +311,10 @@ function selectTrieParOption(data) {
       while (gallery.firstChild) {
         gallery.removeChild(gallery.firstChild);
       }
-      trieTitle.forEach((element) => {
+      arrayTemp.forEach((element) => {
         picCard(element).getUserCardGallery(element);
       });
+      selectionImageModal(arrayTemp);
     }
   });
 }
