@@ -263,7 +263,7 @@ function modalFormulaire(data) {
 
 //--------------- Trie par date , popularité, titre ---------------
 
-function selectTrie(data) {
+function selectTrieParOption(data) {
   let returnId = sessionStorage.selectId;
   let arrayTemp = data.filter((obj) => obj.photographerId == returnId);
   console.log(arrayTemp);
@@ -272,14 +272,29 @@ function selectTrie(data) {
     const selectChoice = selectId.selectedIndex;
     const ValeurChoice = selectId.options[selectChoice].value;
     if (ValeurChoice == "popularite") {
-      console.log("popularite");
+      arrayTemp = arrayTemp.sort((a, b) => (a.likes > b.likes ? 1 : -1));
+      console.log(arrayTemp);
     } else if (ValeurChoice == "date") {
-      console.log("date");
+      arrayTemp = arrayTemp.sort(function (a, b) {
+        var key1 = new Date(a.date);
+        var key2 = new Date(b.date);
+        if (key1 < key2) {
+          return -1;
+        } else if (key1 == key2) {
+          return 0;
+        } else {
+          return 1;
+        }
+      });
+      console.log(arrayTemp);
     } else if (ValeurChoice == "title") {
-      console.log("title");
+      arrayTemp = arrayTemp.sort(function compare(a, b) {
+        if (a.title < b.title) return -1;
+        if (a.title > b.title) return 1;
+        return 0;
+      });
+      console.log(arrayTemp);
     }
   });
-  // const selectChoice = selectId.selectedIndex;
-  // const ValeurChoice = selectId.options[selectChoice].value;
-  // console.log(ValeurChoice);
+  console.log(arrayTemp);
 }

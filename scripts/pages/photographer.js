@@ -144,7 +144,7 @@ async function initPhotographer() {
   selectInfo(photographers, medias);
   trieArrayGallerie(medias);
   selectionImageModal(medias);
-  selectTrie(medias);
+  selectTrieParOption(medias);
   customElements.define("nav-tabs", Tabs);
 }
 
