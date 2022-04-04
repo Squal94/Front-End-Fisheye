@@ -269,13 +269,19 @@ function selectTrieParOption(data) {
   console.log(arrayTemp);
   const selectId = document.getElementById("trie");
   selectId.addEventListener("click", () => {
+    const gallery = document.querySelector(".galleryPhotographer__gallery");
     const selectChoice = selectId.selectedIndex;
     const ValeurChoice = selectId.options[selectChoice].value;
     if (ValeurChoice == "popularite") {
-      arrayTemp = arrayTemp.sort((a, b) => (a.likes > b.likes ? 1 : -1));
-      console.log(arrayTemp);
+      trieLikes = arrayTemp.sort((a, b) => (a.likes > b.likes ? 1 : -1));
+      while (gallery.firstChild) {
+        gallery.removeChild(gallery.firstChild);
+      }
+      trieLikes.forEach((element) => {
+        picCard(element).getUserCardGallery(element);
+      });
     } else if (ValeurChoice == "date") {
-      arrayTemp = arrayTemp.sort(function (a, b) {
+      trieDate = arrayTemp.sort(function (a, b) {
         var key1 = new Date(a.date);
         var key2 = new Date(b.date);
         if (key1 < key2) {
@@ -286,15 +292,24 @@ function selectTrieParOption(data) {
           return 1;
         }
       });
-      console.log(arrayTemp);
+      while (gallery.firstChild) {
+        gallery.removeChild(gallery.firstChild);
+      }
+      trieDate.forEach((element) => {
+        picCard(element).getUserCardGallery(element);
+      });
     } else if (ValeurChoice == "title") {
-      arrayTemp = arrayTemp.sort(function compare(a, b) {
+      trieTitle = arrayTemp.sort(function compare(a, b) {
         if (a.title < b.title) return -1;
         if (a.title > b.title) return 1;
         return 0;
       });
-      console.log(arrayTemp);
+      while (gallery.firstChild) {
+        gallery.removeChild(gallery.firstChild);
+      }
+      trieTitle.forEach((element) => {
+        picCard(element).getUserCardGallery(element);
+      });
     }
   });
-  console.log(arrayTemp);
 }
