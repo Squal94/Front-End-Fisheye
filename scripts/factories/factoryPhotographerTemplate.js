@@ -24,8 +24,8 @@ function cumulLikesPhotographer(data) {
 
 function picCard(data) {
   const { photographerId, title, image, likes, date, price, video, id } = data;
-  const pictureSrc = `assets/medias/${photographerId}/${image}`;
-  const videoSrc = `assets/medias/${photographerId}/${video}`;
+  const pictureSrc = `assets/medias/${photographerId}/thumbnail/${image}`;
+  const videoSrc = `assets/medias/${photographerId}/thumbnail/${video}`;
   const galleryInsert = document.querySelector(".galleryPhotographer__gallery");
 
   function getUserCardGallery() {
