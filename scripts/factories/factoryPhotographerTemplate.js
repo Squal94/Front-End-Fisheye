@@ -3,10 +3,62 @@
 function trieArrayGallerie(data) {
   let returnId = sessionStorage.selectId;
   let arrayTemp = data.filter((obj) => obj.photographerId == returnId);
+  const gallery = document.querySelector(".galleryPhotographer__gallery");
+  const trieId = document.getElementById("trie");
+  trieId.addEventListener("change", () => {
+    const selectChoice = trieId.selectedIndex;
+    const ValeurChoice = trieId.options[selectChoice].value;
+    if (ValeurChoice == "popularite") {
+      arrayTemp = arrayTemp.sort((a, b) => (a.likes > b.likes ? 1 : -1));
+      while (gallery.firstChild) {
+        gallery.removeChild(gallery.firstChild);
+      }
+      arrayTemp.forEach((element) => {
+        picCard(element).getUserCardGallery(element);
+      });
+      selectionImageModal(data);
+      Tabs(gallery);
+    } else if (ValeurChoice == "date") {
+      arrayTemp = arrayTemp.sort(function (a, b) {
+        let key1 = new Date(a.date);
+        let key2 = new Date(b.date);
+        if (key1 < key2) {
+          return -1;
+        } else if (key1 == key2) {
+          return 0;
+        } else {
+          return 1;
+        }
+      });
+      while (gallery.firstChild) {
+        gallery.removeChild(gallery.firstChild);
+      }
+      arrayTemp.forEach((element) => {
+        picCard(element).getUserCardGallery(element);
+      });
+      selectionImageModal(data);
+      Tabs(gallery);
+    } else if (ValeurChoice == "title") {
+      arrayTemp = arrayTemp.sort(function compare(a, b) {
+        if (a.title < b.title) return -1;
+        if (a.title > b.title) return 1;
+        return 0;
+      });
+      while (gallery.firstChild) {
+        gallery.removeChild(gallery.firstChild);
+      }
+      arrayTemp.forEach((element) => {
+        picCard(element).getUserCardGallery(element);
+      });
+      selectionImageModal(data);
+      Tabs(gallery);
+    }
+  });
   arrayTemp.forEach((element) => {
     picCard(element).getUserCardGallery(element);
   });
   selectionImageModal(data);
+  Tabs(gallery);
 }
 
 //---------Factory pour le cumul des likes photographer--------

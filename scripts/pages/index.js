@@ -22,9 +22,10 @@ async function displayData(photographers) {
 }
 
 async function init() {
+  const photographersSection = document.querySelector(".photographer_section");
   const { photographers } = await getPhotographers();
   displayData(photographers);
-  customElements.define("nav-tabs", Tabs);
+  Tabs(photographersSection);
 }
 
 init();

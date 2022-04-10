@@ -112,7 +112,7 @@ function photographGallery(data, medias) {
 
   //------ Partie Gallery ------
 
-  const galleryPicsId = document.createElement("nav-tabs");
+  const galleryPicsId = document.createElement("div");
   galleryPicsId.classList.add("galleryPhotographer__gallery");
   galleryPicsId.classList.add(`galleryPhotographer__gallery--${medias.id}`);
   galleryName.appendChild(galleryPicsId);
@@ -143,8 +143,6 @@ async function initPhotographer() {
   const { medias } = await getMedias();
   selectInfo(photographers, medias);
   trieArrayGallerie(medias);
-  selectTrieParOption(medias);
-  customElements.define("nav-tabs", Tabs);
 }
 
 initPhotographer();
