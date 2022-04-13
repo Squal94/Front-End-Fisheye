@@ -1,3 +1,6 @@
+const focusableSelector = "button, a, img, input, textarea";
+let focusables = [];
+
 function Tabs(root) {
   root.setAttribute("role", "tablist");
   const tabs = Array.from(root.children);
@@ -20,10 +23,20 @@ function Tabs(root) {
     tab.setAttribute("aria-controls", id);
     tab.setAttribute("hidden", "hidden");
 
-    tab.addEventListener("keyup", (e) => {
+    tab.addEventListener("keydown", (e) => {
       let index = null;
-      if (e.key === "ArrowRight") {
+      if (e.key === "Enter") {
+        currentTab = document.querySelector('[tabindex="0"]');
+        currentTab.click();
+      } else if (e.key === "ArrowRight") {
         index = i === tabs.length - 1 ? 0 : i + 1;
+      } else if (e.key === "Tab") {
+        if ((index = i === tabs.length - 1 ? 0 : i + 1)) {
+          e.preventDefault();
+        } else if ((index = i === tabs.length - 1)) {
+          // stop preventDefault
+          return (index = 0);
+        }
       } else if (e.key === "ArrowLeft") {
         index = i === 0 ? tabs.length - 1 : i - 1;
       } else if (e.key === "Home") {
@@ -35,11 +48,6 @@ function Tabs(root) {
         activate(tabs[index]);
         tabs[index].focus();
       }
-    });
-    // Navigation à la souris
-    tab.addEventListener("click", (e) => {
-      e.preventDefault();
-      this.activate(tab);
     });
     // Initialisation de activate au tabs 0
     activate(tabs[0], false);
@@ -63,4 +71,151 @@ function Tabs(root) {
       window.history.replaceState({}, "", "#" + id);
     }
   }
+}
+
+function tabsPhotographer(root) {
+  root.setAttribute("role", "tablist");
+  const arrayFigure = Array.from(root.children);
+  let testarray = [];
+  const hash = window.location.hash.replace("#", "");
+  let currentTab = testarray[0];
+  arrayFigure.forEach((figure) => {
+    let testA = figure.querySelector("a");
+    testarray.push(testA);
+    let testCoeur = figure.querySelector(".coeur");
+    testarray.push(testCoeur);
+  });
+  testarray.forEach((tab, i) => {
+    let id = tab.getAttribute("class");
+
+    if (tab.getAttribute("aria-selected") === "true" && hash === "") {
+      currentTab = tab;
+    }
+    if (id === hash) {
+      currentTab = tab;
+    }
+    // On ajoute les attributs aria sur l'onglet
+    tab.setAttribute("role", "tab");
+    tab.setAttribute("aria-selected", "false");
+    tab.setAttribute("tabindex", "-1");
+    tab.setAttribute("aria-controls", id);
+
+    tab.addEventListener("keydown", (e) => {
+      let index = null;
+      if (e.key === "Enter") {
+        currentTab = tab;
+        currentTab.click();
+      } else if (e.key === "ArrowRight") {
+        index = i === testarray.length - 1 ? 0 : i + 1;
+      } else if (e.key === "Tab") {
+        if ((index = i === testarray.length - 1 ? 0 : i + 1)) {
+          e.preventDefault();
+        } else if ((index = i === testarray.length - 1)) {
+          // stop preventDefault
+          return (index = 0);
+        }
+      } else if (e.key === "ArrowLeft") {
+        index = i === 0 ? testarray.length - 1 : i - 1;
+      } else if (e.key === "Home") {
+        index = 0;
+      } else if (e.key === "End") {
+        index = testarray.length - 1;
+      }
+      if (index !== null) {
+        activate(testarray[index]);
+        testarray[index].focus();
+      }
+    });
+    // Initialisation de activate au tabs 0
+    activate(testarray[0], false);
+  });
+
+  // Fonction de controle des aria et changement si necessaire sur action
+
+  function activate(tab, changeHash = true) {
+    let currentTab = document.querySelector('[aria-selected="true"]');
+    if (currentTab !== null) {
+      tab.getAttribute(currentTab.getAttribute("aria-controls"));
+      currentTab.setAttribute("aria-selected", "false");
+      currentTab.setAttribute("tabindex", "-1");
+    }
+    let id = tab.getAttribute("aria-controls");
+    tab.setAttribute("aria-selected", "true");
+    tab.setAttribute("tabindex", "0");
+    if (changeHash) {
+      window.history.replaceState({}, "", "#" + id);
+    }
+  }
+}
+
+// Acces de la carrousel modal
+
+let modal = document.querySelector("aside");
+function focusInModal(e) {
+  e.preventDefault();
+  // On ajoute les attributs aria sur l'onglet
+  focusables.forEach((tab) => {
+    let id = tab.getAttribute("class");
+    tab.setAttribute("role", "tab");
+    tab.setAttribute("aria-selected", "false");
+    tab.setAttribute("tabindex", "-1");
+    tab.setAttribute("aria-controls", id);
+  });
+  let indexSelect = focusables.findIndex(
+    (f) => f === modal.querySelector(":focus")
+  );
+  indexSelect++;
+  if (indexSelect >= focusables.length) {
+    indexSelect = 0;
+  }
+  activateModalAcces(focusables[indexSelect]);
+
+  function activateModalAcces(tab) {
+    let currentTab = document.querySelector('[aria-selected="true"]');
+    if (currentTab !== null) {
+      tab.getAttribute(currentTab.getAttribute("aria-controls"));
+      currentTab.setAttribute("aria-selected", "false");
+      currentTab.setAttribute("tabindex", "-1");
+    }
+    tab.getAttribute("aria-controls");
+    tab.setAttribute("aria-selected", "true");
+    tab.setAttribute("tabindex", "0");
+    focusables[indexSelect].focus();
+  }
+}
+
+function selectEnter() {
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      let indexSelect = focusables.findIndex(
+        (f) => f === modal.querySelector(":focus")
+      );
+      if (indexSelect === 0) {
+        document.querySelector(".closeCarrousel").click();
+      } else if (indexSelect === 1) {
+        document.querySelector(".left").click();
+      } else if (indexSelect === 2) {
+      } else if (indexSelect === 3) {
+        document.querySelector(".right").click();
+      }
+    }
+  });
+}
+
+function tabsModalPics() {
+  window.addEventListener("keydown", (e) => {
+    let carrouselConteneur = document.querySelector("div.carrouselConteneur");
+    if (e.key === "Escape" || e.key === "Esc") {
+      modal.style.display = "none";
+      modal.setAttribute("aria-hidden", true);
+      modal.setAttribute("aria-modal", false);
+      modal.removeChild(carrouselConteneur);
+    }
+    if (e.key === "Tab" && modal !== null) {
+      focusInModal(e);
+    }
+    if (e.key === "Enter" && modal !== null) {
+      selectEnter();
+    }
+  });
 }

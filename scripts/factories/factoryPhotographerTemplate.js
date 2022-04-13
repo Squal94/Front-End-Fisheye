@@ -1,66 +1,3 @@
-//-Factory pour recuperer toutes les images du photographer et les afficher-
-
-function trieArrayGallerie(data) {
-  let returnId = sessionStorage.selectId;
-  let arrayTemp = data.filter((obj) => obj.photographerId == returnId);
-  const gallery = document.querySelector(".galleryPhotographer__gallery");
-  const trieId = document.getElementById("trie");
-  trieId.addEventListener("change", () => {
-    const selectChoice = trieId.selectedIndex;
-    const ValeurChoice = trieId.options[selectChoice].value;
-    if (ValeurChoice == "popularite") {
-      arrayTemp = arrayTemp.sort((a, b) => (a.likes > b.likes ? 1 : -1));
-      while (gallery.firstChild) {
-        gallery.removeChild(gallery.firstChild);
-      }
-      arrayTemp.forEach((element) => {
-        picCard(element).getUserCardGallery(element);
-      });
-      selectionImageModal(data);
-      Tabs(gallery);
-    } else if (ValeurChoice == "date") {
-      arrayTemp = arrayTemp.sort(function (a, b) {
-        let key1 = new Date(a.date);
-        let key2 = new Date(b.date);
-        if (key1 < key2) {
-          return -1;
-        } else if (key1 == key2) {
-          return 0;
-        } else {
-          return 1;
-        }
-      });
-      while (gallery.firstChild) {
-        gallery.removeChild(gallery.firstChild);
-      }
-      arrayTemp.forEach((element) => {
-        picCard(element).getUserCardGallery(element);
-      });
-      selectionImageModal(data);
-      Tabs(gallery);
-    } else if (ValeurChoice == "title") {
-      arrayTemp = arrayTemp.sort(function compare(a, b) {
-        if (a.title < b.title) return -1;
-        if (a.title > b.title) return 1;
-        return 0;
-      });
-      while (gallery.firstChild) {
-        gallery.removeChild(gallery.firstChild);
-      }
-      arrayTemp.forEach((element) => {
-        picCard(element).getUserCardGallery(element);
-      });
-      selectionImageModal(data);
-      Tabs(gallery);
-    }
-  });
-  arrayTemp.forEach((element) => {
-    picCard(element).getUserCardGallery(element);
-  });
-  selectionImageModal(data);
-  Tabs(gallery);
-}
-
 //---------Factory pour le cumul des likes photographer--------
 
 function cumulLikesPhotographer(data) {
@@ -77,7 +14,7 @@ function cumulLikesPhotographer(data) {
 function picCard(data) {
   const { photographerId, title, image, likes, date, price, video, id } = data;
   const pictureSrc = `assets/medias/${photographerId}/thumbnail/${image}`;
-  const videoSrc = `assets/medias/${photographerId}/thumbnail/${video}`;
+  const videoSrc = `assets/medias/${photographerId}/thumbnail/${video}.png`;
   const galleryInsert = document.querySelector(".galleryPhotographer__gallery");
 
   function getUserCardGallery() {
@@ -108,22 +45,27 @@ function picCard(data) {
     coeurSecond.innerHTML = coeurlLikeSecond;
     if (data.video) {
       const aLink = document.createElement("a");
+      aLink.classList.add(`${id}`);
       const video = document.createElement("video");
       video.classList.add(`${id}`);
       video.setAttribute("src", videoSrc);
       video.setAttribute(
         "alt",
-        `Titre de l'image : ${title} ,prise le ${date}.`
+        `Titre de l'image : ${title} ,prise le ${date}, avec un nombre de likes de ${likes}.`
       );
       video.setAttribute("controls", "");
       figure.appendChild(aLink);
       aLink.appendChild(video);
     } else if (data.image) {
       const aLink = document.createElement("a");
+      aLink.classList.add(`${id}`);
       const pic = document.createElement("img");
       pic.classList.add(`${id}`);
       pic.setAttribute("src", pictureSrc);
-      pic.setAttribute("alt", `Titre de l'image : ${title} ,prise le ${date}.`);
+      pic.setAttribute(
+        "alt",
+        `Titre de l'image : ${title} ,prise le ${date}, avec un nombre de likes de ${likes}. `
+      );
       figure.appendChild(aLink);
       aLink.appendChild(pic);
     }
@@ -163,3 +105,13 @@ function selectionImageModal(data) {
     };
   }
 }
+
+// function test() {
+//   const gallery = document.querySelector(".galleryPhotographer__gallery");
+//   const carrousel = document
+//     .querySelector(".carrouselModal")
+//     .getAttribute("aria-modal");
+//   if (carrousel === "false") {
+//     console.log(tabsPhotographer(gallery));
+//   }
+// }

@@ -1,3 +1,7 @@
+*:focus {
+  box-shadow: 0 0 10px #db8876;
+}
+
 #contact_modal {
   display: none;
   position: fixed;

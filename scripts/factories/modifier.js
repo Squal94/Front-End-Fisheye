@@ -1,3 +1,58 @@
+//-Factory pour recuperer toutes les images du photographer et les afficher-
+
+function trieArrayGallerie(data) {
+  const gallery = document.querySelector(".galleryPhotographer__gallery");
+  const trieId = document.getElementById("trie");
+  let returnId = sessionStorage.selectId;
+  let arrayTemp = data.filter((obj) => obj.photographerId == returnId);
+
+  trieId.addEventListener("change", () => {
+    const selectChoice = trieId.selectedIndex;
+    const ValeurChoice = trieId.options[selectChoice].value;
+    if (ValeurChoice == "popularite") {
+      arrayTemp = arrayTemp.sort((a, b) => (a.likes > b.likes ? 1 : -1));
+      while (gallery.firstChild) {
+        gallery.removeChild(gallery.firstChild);
+      }
+      arrayChoice(arrayTemp, gallery);
+    } else if (ValeurChoice == "date") {
+      arrayTemp = arrayTemp.sort(function (a, b) {
+        let key1 = new Date(a.date);
+        let key2 = new Date(b.date);
+        if (key1 < key2) {
+          return -1;
+        } else if (key1 == key2) {
+          return 0;
+        } else {
+          return 1;
+        }
+      });
+      while (gallery.firstChild) {
+        gallery.removeChild(gallery.firstChild);
+      }
+      arrayChoice(arrayTemp, gallery);
+    } else if (ValeurChoice == "title") {
+      arrayTemp = arrayTemp.sort(function compare(a, b) {
+        if (a.title < b.title) return -1;
+        if (a.title > b.title) return 1;
+        return 0;
+      });
+      while (gallery.firstChild) {
+        gallery.removeChild(gallery.firstChild);
+      }
+      arrayChoice(arrayTemp, gallery);
+    }
+  });
+  function arrayChoice(array, root) {
+    array.forEach((element) => {
+      picCard(element).getUserCardGallery(element);
+    });
+    selectionImageModal(data);
+    tabsPhotographer(root);
+  }
+  arrayChoice(arrayTemp, gallery);
+}
+
 //--------- fonction modal picture ------------
 
 function carrouselModal(data, array) {
@@ -32,6 +87,10 @@ function carrouselModal(data, array) {
   mainPicConteneur.appendChild(mainPic);
   mainPicConteneur.appendChild(right);
   carrouselConteneur.appendChild(mainPicTitle);
+  const target = document.querySelector(".carrouselModal");
+  focusables = Array.from(target.querySelectorAll(focusableSelector));
+  tabsModalPics();
+
   //------------- Fonctionnement de la modal-----------------
 
   right.addEventListener("click", () => {
@@ -49,12 +108,17 @@ function carrouselModal(data, array) {
     return positionInArray;
   });
 
+  // document.querySelector(".closeCarrousel").addEventListener("focus", () => {
+  //   previousFocusElementTest = previousFocusElement;
+  //   return previousFocusElementTest;
+  // });
+
   closeCarrousel.addEventListener("click", () => {
-    let target = document.querySelector(".carrouselModal");
     target.style.display = "none";
     target.setAttribute("aria-hidden", true);
     target.setAttribute("aria-modal", false);
     target.removeChild(carrouselConteneur);
+    document.querySelector("[tabindex]").focus();
   });
 }
 
