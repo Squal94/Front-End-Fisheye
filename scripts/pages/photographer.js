@@ -67,6 +67,7 @@ function photographHeader(data) {
   const imgPhotographer = document.createElement("img");
   imgPhotographer.classList.add("imgPhotographer");
   imgPhotographer.setAttribute("src", picturePhotographer);
+  imgPhotographer.setAttribute("alt", "");
   headerPhoto.appendChild(imgPhotographer);
 }
 

@@ -33,6 +33,7 @@ function picCard(data) {
     const coeur = document.createElement("div");
     coeur.classList.add("coeur");
     coeur.classList.add(`coeur${id}`);
+    coeur.setAttribute("aria-label", "likes");
     const coeurFirst = document.createElement("div");
     coeurFirst.classList.add("coeurFirst");
     coeurFirst.classList.add(`coeurFirst${id}`);

@@ -102,7 +102,10 @@ function tabsPhotographer(root) {
           currentTab.click();
         }
       } else if (e.key === "ArrowRight") {
-        index = i === testarray.length - 1 ? 0 : i + 1;
+        if (modal.getAttribute("aria-modal") === "true") {
+        } else {
+          index = i === testarray.length - 1 ? 0 : i + 1;
+        }
       } else if (e.key === "Tab") {
         if ((index = i === testarray.length - 1 ? 0 : i + 1)) {
           e.preventDefault();
@@ -111,7 +114,10 @@ function tabsPhotographer(root) {
           index = 0;
         }
       } else if (e.key === "ArrowLeft") {
-        index = i === 0 ? testarray.length - 1 : i - 1;
+        if (modal.getAttribute("aria-modal") === "true") {
+        } else {
+          index = i === 0 ? testarray.length - 1 : i - 1;
+        }
       } else if (e.key === "Home") {
         index = 0;
       } else if (e.key === "End") {
