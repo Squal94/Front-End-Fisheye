@@ -7,7 +7,9 @@ function photographerFactory(data) {
     const article = document.createElement("article");
     const className = id;
     article.classList.add(className);
+    article.classList.add("photographer");
     const img = document.createElement("img");
+    img.classList.add("portrait");
     const boxInfo = document.createElement("div");
     boxInfo.classList.add("boxInfo");
     const pInfo = document.createElement("p");

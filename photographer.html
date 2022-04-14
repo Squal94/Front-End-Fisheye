@@ -17,12 +17,18 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <a href="./index.html"
-      ><img src="assets/medias/logo.png" class="logo" alt="Fisheye Home Page"
-    /></a>
+    <header>
+      <a href="./index.html"
+        ><img src="assets/medias/logo.png" class="logo" alt="Fisheye Home Page"
+      /></a>
+    </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">
+        <button
+          class="contact_button"
+          onclick="displayModal()"
+          aria-labelledby="Contactez-moi"
+        >
           Contactez-moi
         </button>
       </div>
@@ -35,7 +41,7 @@
       aria-labelledby="Formulaire de contact"
     >
       <div class="modal">
-        <header>
+        <header class="headerForm">
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>

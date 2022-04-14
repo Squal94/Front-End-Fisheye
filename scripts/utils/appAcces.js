@@ -96,8 +96,11 @@ function tabsPhotographer(root) {
     tab.addEventListener("keydown", (e) => {
       let index = null;
       if (e.key === "Enter") {
-        currentTab = tab;
-        currentTab.click();
+        if (modal.getAttribute("aria-modal") === "true") {
+        } else {
+          currentTab = tab;
+          currentTab.click();
+        }
       } else if (e.key === "ArrowRight") {
         index = i === testarray.length - 1 ? 0 : i + 1;
       } else if (e.key === "Tab") {
@@ -180,12 +183,9 @@ function focusInModal(e) {
   focusables[indexSelect].focus();
 }
 
-function tabsModalFormulaire(e) {
-  const formulaireConteneur = document.querySelector("#contact_modal");
-  const divModal = formulaireConteneur.querySelector(".modal");
-  divModal.setAttribute("role", "tablist");
+function tabsModalFormulaire() {
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" || e.key === "Esc") {
+    if (e.key === "Escape" || (e.key === "Esc" && modal !== null)) {
       closeModal();
     }
     if (e.key === "Tab" && modal !== null) {

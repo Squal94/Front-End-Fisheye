@@ -45,6 +45,7 @@ function picCard(data) {
     coeurSecond.innerHTML = coeurlLikeSecond;
     if (data.video) {
       const aLink = document.createElement("a");
+      aLink.classList.add("link");
       const video = document.createElement("video");
       video.classList.add(`${id}`);
       video.setAttribute("src", videoSrc);
@@ -57,6 +58,7 @@ function picCard(data) {
       aLink.appendChild(video);
     } else if (data.image) {
       const aLink = document.createElement("a");
+      aLink.classList.add("link");
       const pic = document.createElement("img");
       pic.classList.add(`${id}`);
       pic.setAttribute("src", pictureSrc);

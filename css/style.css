@@ -1,8 +1,11 @@
 @import url("photographer.css");
 
 body {
+  box-sizing: border-box;
   font-family: "DM Sans", sans-serif;
   margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 header {
@@ -11,6 +14,7 @@ header {
   justify-content: space-between;
   align-items: center;
   height: 180px;
+  width: 100%;
 }
 
 h1 {
@@ -40,6 +44,7 @@ h2 {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 25px;
 }
 
 .photographer_section article h2 {
@@ -52,6 +57,16 @@ h2 {
   width: 200px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.photographer:hover .portrait {
+  transform: scale(1.1);
+  opacity: 0.7;
+}
+
+.photographer:focus .portrait {
+  transform: scale(1.1);
+  opacity: 0.7;
 }
 
 .boxInfo {

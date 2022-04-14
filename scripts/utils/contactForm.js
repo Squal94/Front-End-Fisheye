@@ -1,7 +1,9 @@
 const focusableSelector = "button,input,textarea";
 let focusables = [];
+let previousElementFocus = null;
 
 function displayModal() {
+  previousElementFocus = document.querySelector(":focus");
   const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", false);
@@ -14,6 +16,7 @@ function closeModal() {
   modal.style.display = "none";
   modal.setAttribute("aria-hidden", true);
   modal.setAttribute("aria-modal", false);
+  //document.querySelector(".logo").focus();
 }
 
 //---------------------- Modal formulaire ----------------------
@@ -21,7 +24,7 @@ function closeModal() {
 function modalFormulaire(data) {
   //-------------- Query selector fixe ---------------
 
-  const headerFormulaire = document.querySelector("header");
+  const headerFormulaire = document.querySelector(".headerForm");
   const formulaire = document.querySelector("form");
   const formFirstName = document.querySelector("label");
   const formFirstNameInput = document.querySelector("input");
