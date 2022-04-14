@@ -87,10 +87,6 @@ function carrouselModal(data, array) {
   mainPicConteneur.appendChild(mainPic);
   mainPicConteneur.appendChild(right);
   carrouselConteneur.appendChild(mainPicTitle);
-  const target = document.querySelector(".carrouselModal");
-  focusables = Array.from(target.querySelectorAll(focusableSelector));
-  tabsModalPics();
-
   //------------- Fonctionnement de la modal-----------------
 
   right.addEventListener("click", () => {
@@ -108,18 +104,14 @@ function carrouselModal(data, array) {
     return positionInArray;
   });
 
-  // document.querySelector(".closeCarrousel").addEventListener("focus", () => {
-  //   previousFocusElementTest = previousFocusElement;
-  //   return previousFocusElementTest;
-  // });
-
   closeCarrousel.addEventListener("click", () => {
+    let target = document.querySelector(".carrouselModal");
     target.style.display = "none";
     target.setAttribute("aria-hidden", true);
     target.setAttribute("aria-modal", false);
     target.removeChild(carrouselConteneur);
-    document.querySelector("[tabindex]").focus();
   });
+  tabsModalPics();
 }
 
 //-----------------Fonction pour selection du coeur et changement du like et Cumul Likes

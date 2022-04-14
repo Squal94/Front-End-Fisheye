@@ -14,7 +14,7 @@ function cumulLikesPhotographer(data) {
 function picCard(data) {
   const { photographerId, title, image, likes, date, price, video, id } = data;
   const pictureSrc = `assets/medias/${photographerId}/thumbnail/${image}`;
-  const videoSrc = `assets/medias/${photographerId}/thumbnail/${video}.png`;
+  const videoSrc = `assets/medias/${photographerId}/thumbnail/${video}`;
   const galleryInsert = document.querySelector(".galleryPhotographer__gallery");
 
   function getUserCardGallery() {
@@ -45,7 +45,6 @@ function picCard(data) {
     coeurSecond.innerHTML = coeurlLikeSecond;
     if (data.video) {
       const aLink = document.createElement("a");
-      aLink.classList.add(`${id}`);
       const video = document.createElement("video");
       video.classList.add(`${id}`);
       video.setAttribute("src", videoSrc);
@@ -58,7 +57,6 @@ function picCard(data) {
       aLink.appendChild(video);
     } else if (data.image) {
       const aLink = document.createElement("a");
-      aLink.classList.add(`${id}`);
       const pic = document.createElement("img");
       pic.classList.add(`${id}`);
       pic.setAttribute("src", pictureSrc);
@@ -105,13 +103,3 @@ function selectionImageModal(data) {
     };
   }
 }
-
-// function test() {
-//   const gallery = document.querySelector(".galleryPhotographer__gallery");
-//   const carrousel = document
-//     .querySelector(".carrouselModal")
-//     .getAttribute("aria-modal");
-//   if (carrousel === "false") {
-//     console.log(tabsPhotographer(gallery));
-//   }
-// }

@@ -1,11 +1,19 @@
+const focusableSelector = "button,input,textarea";
+let focusables = [];
+
 function displayModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
+  modal.setAttribute("aria-hidden", false);
+  modal.setAttribute("aria-modal", true);
+  tabsModalFormulaire();
 }
 
 function closeModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
+  modal.setAttribute("aria-hidden", true);
+  modal.setAttribute("aria-modal", false);
 }
 
 //---------------------- Modal formulaire ----------------------
@@ -78,19 +86,6 @@ function modalFormulaire(data) {
   formulaire.insertBefore(btnClassButton, formTextAreaInput.nextSibling);
 
   //---------- Accessibilité formulaire ----------
-
-  const BtnContactMoi = document.querySelector(".photograph-header button");
-  const BtnContactMoiClose = document.querySelector("header img");
-
-  BtnContactMoi.addEventListener("click", () => {
-    target = document.querySelector("#contact_modal");
-    target.setAttribute("aria-hidden", false);
-    target.setAttribute("aria-modal", true);
-  });
-
-  BtnContactMoiClose.addEventListener("click", () => {
-    target = document.querySelector("#contact_modal");
-    target.setAttribute("aria-hidden", true);
-    target.setAttribute("aria-modal", false);
-  });
+  target = document.querySelector("#contact_modal");
+  focusables = Array.from(target.querySelectorAll(focusableSelector));
 }

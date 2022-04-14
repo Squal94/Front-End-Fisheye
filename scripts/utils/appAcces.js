@@ -1,5 +1,4 @@
-const focusableSelector = "button, a, img, input, textarea";
-let focusables = [];
+let modal = document.querySelector("aside");
 
 function Tabs(root) {
   root.setAttribute("role", "tablist");
@@ -23,20 +22,10 @@ function Tabs(root) {
     tab.setAttribute("aria-controls", id);
     tab.setAttribute("hidden", "hidden");
 
-    tab.addEventListener("keydown", (e) => {
+    tab.addEventListener("keyup", (e) => {
       let index = null;
-      if (e.key === "Enter") {
-        currentTab = document.querySelector('[tabindex="0"]');
-        currentTab.click();
-      } else if (e.key === "ArrowRight") {
+      if (e.key === "ArrowRight") {
         index = i === tabs.length - 1 ? 0 : i + 1;
-      } else if (e.key === "Tab") {
-        if ((index = i === tabs.length - 1 ? 0 : i + 1)) {
-          e.preventDefault();
-        } else if ((index = i === tabs.length - 1)) {
-          // stop preventDefault
-          return (index = 0);
-        }
       } else if (e.key === "ArrowLeft") {
         index = i === 0 ? tabs.length - 1 : i - 1;
       } else if (e.key === "Home") {
@@ -48,6 +37,11 @@ function Tabs(root) {
         activate(tabs[index]);
         tabs[index].focus();
       }
+    });
+    // Navigation à la souris
+    tab.addEventListener("click", (e) => {
+      e.preventDefault();
+      this.activate(tab);
     });
     // Initialisation de activate au tabs 0
     activate(tabs[0], false);
@@ -148,74 +142,55 @@ function tabsPhotographer(root) {
   }
 }
 
-// Acces de la carrousel modal
-
-let modal = document.querySelector("aside");
-function focusInModal(e) {
-  e.preventDefault();
-  // On ajoute les attributs aria sur l'onglet
-  focusables.forEach((tab) => {
-    let id = tab.getAttribute("class");
-    tab.setAttribute("role", "tab");
-    tab.setAttribute("aria-selected", "false");
-    tab.setAttribute("tabindex", "-1");
-    tab.setAttribute("aria-controls", id);
-  });
-  let indexSelect = focusables.findIndex(
-    (f) => f === modal.querySelector(":focus")
-  );
-  indexSelect++;
-  if (indexSelect >= focusables.length) {
-    indexSelect = 0;
-  }
-  activateModalAcces(focusables[indexSelect]);
-
-  function activateModalAcces(tab) {
-    let currentTab = document.querySelector('[aria-selected="true"]');
-    if (currentTab !== null) {
-      tab.getAttribute(currentTab.getAttribute("aria-controls"));
-      currentTab.setAttribute("aria-selected", "false");
-      currentTab.setAttribute("tabindex", "-1");
-    }
-    tab.getAttribute("aria-controls");
-    tab.setAttribute("aria-selected", "true");
-    tab.setAttribute("tabindex", "0");
-    focusables[indexSelect].focus();
-  }
-}
-
-function selectEnter() {
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      let indexSelect = focusables.findIndex(
-        (f) => f === modal.querySelector(":focus")
-      );
-      if (indexSelect === 0) {
-        document.querySelector(".closeCarrousel").click();
-      } else if (indexSelect === 1) {
-        document.querySelector(".left").click();
-      } else if (indexSelect === 2) {
-      } else if (indexSelect === 3) {
-        document.querySelector(".right").click();
-      }
-    }
-  });
-}
-
 function tabsModalPics() {
   window.addEventListener("keydown", (e) => {
-    let carrouselConteneur = document.querySelector("div.carrouselConteneur");
+    const carrouselConteneur = document.querySelector("div.carrouselConteneur");
     if (e.key === "Escape" || e.key === "Esc") {
       modal.style.display = "none";
       modal.setAttribute("aria-hidden", true);
       modal.setAttribute("aria-modal", false);
       modal.removeChild(carrouselConteneur);
     }
+
+    if (e.key === "ArrowRight" && modal !== null) {
+      carrouselConteneur.querySelector(".right").click();
+    }
+    if (e.key === "ArrowLeft" && modal !== null) {
+      carrouselConteneur.querySelector(".left").click();
+    }
+  });
+}
+
+function focusInModal(e) {
+  const formulaireConteneur = document.querySelector("#contact_modal");
+  e.preventDefault();
+  let indexSelect = focusables.findIndex(
+    (f) => f === formulaireConteneur.querySelector(":focus")
+  );
+  if (e.shiftKey === true) {
+    indexSelect--;
+  } else {
+    indexSelect++;
+  }
+  if (indexSelect >= focusables.length) {
+    indexSelect = 0;
+  }
+  if (indexSelect < 0) {
+    indexSelect = focusables.length - 1;
+  }
+  focusables[indexSelect].focus();
+}
+
+function tabsModalFormulaire(e) {
+  const formulaireConteneur = document.querySelector("#contact_modal");
+  const divModal = formulaireConteneur.querySelector(".modal");
+  divModal.setAttribute("role", "tablist");
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" || e.key === "Esc") {
+      closeModal();
+    }
     if (e.key === "Tab" && modal !== null) {
       focusInModal(e);
-    }
-    if (e.key === "Enter" && modal !== null) {
-      selectEnter();
     }
   });
 }
