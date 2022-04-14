@@ -90,18 +90,30 @@ function carrouselModal(data, array) {
   //------------- Fonctionnement de la modal-----------------
 
   right.addEventListener("click", () => {
-    positionInArray = ++positionInArray;
-    const picture = `assets/medias/${array[positionInArray].photographerId}/${array[positionInArray].image}`;
-    mainPic.setAttribute("src", picture);
-    mainPicTitle.innerHTML = array[positionInArray].title;
-    return positionInArray;
+    if (positionInArray == array.length - 1) {
+      right.classList.add("opacity");
+    } else {
+      positionInArray = ++positionInArray;
+      const picture = `assets/medias/${array[positionInArray].photographerId}/${array[positionInArray].image}`;
+      mainPic.setAttribute("src", picture);
+      mainPicTitle.innerHTML = array[positionInArray].title;
+    }
+    if (left.classList.contains("opacity") == true) {
+      left.classList.remove("opacity");
+    }
   });
   left.addEventListener("click", () => {
-    positionInArray = --positionInArray;
-    const picture = `assets/medias/${array[positionInArray].photographerId}/${array[positionInArray].image}`;
-    mainPic.setAttribute("src", picture);
-    mainPicTitle.innerHTML = array[positionInArray].title;
-    return positionInArray;
+    if (positionInArray == 0) {
+      left.classList.add("opacity");
+    } else {
+      positionInArray = --positionInArray;
+      const picture = `assets/medias/${array[positionInArray].photographerId}/${array[positionInArray].image}`;
+      mainPic.setAttribute("src", picture);
+      mainPicTitle.innerHTML = array[positionInArray].title;
+    }
+    if (right.classList.contains("opacity") == true) {
+      right.classList.remove("opacity");
+    }
   });
 
   closeCarrousel.addEventListener("click", () => {

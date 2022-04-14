@@ -5,7 +5,6 @@ function Tabs(root) {
   const tabs = Array.from(root.children);
   const hash = window.location.hash.replace("#", "");
   let currentTab = tabs[0];
-
   tabs.forEach((tab, i) => {
     let id = tab.getAttribute("class");
 
@@ -104,9 +103,9 @@ function tabsPhotographer(root) {
       } else if (e.key === "Tab") {
         if ((index = i === testarray.length - 1 ? 0 : i + 1)) {
           e.preventDefault();
-        } else if ((index = i === testarray.length - 1)) {
-          // stop preventDefault
-          return (index = 0);
+        } else if ((index = testarray.length - 1)) {
+          e.preventDefault();
+          index = 0;
         }
       } else if (e.key === "ArrowLeft") {
         index = i === 0 ? testarray.length - 1 : i - 1;
