@@ -93,8 +93,16 @@ function selectionImageModal(data) {
   for (let i = 0; i < figure.length; ++i) {
     let figureLink = figure[i].querySelector("a");
     figureLink.onclick = function () {
-      let picLink = this.querySelector("img");
-      picId = picLink.getAttribute("class");
+      let picLink;
+      if (this.querySelector("img")) {
+        picLink = this.querySelector("img");
+        picId = picLink.getAttribute("class");
+        console.log(picLink);
+      } else {
+        picLink = this.querySelector("video");
+        picId = picLink.getAttribute("class");
+        console.log(picLink);
+      }
       let returnId = sessionStorage.selectId;
       let arrayTemp = data.filter((obj) => obj.photographerId == returnId);
       //------------Partie launch modal-------------

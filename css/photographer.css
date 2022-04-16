@@ -335,8 +335,24 @@ form .contact_button {
 }
 
 .mainPic {
-  width: 700px;
+  width: 800px;
   height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+  margin-bottom: 0;
+}
+.pic {
+  max-width: 700px;
+  max-height: 700px;
+  object-fit: contain;
+  margin-bottom: 0;
+}
+
+.video {
+  max-width: 700px;
+  max-height: 700px;
   object-fit: contain;
   margin-bottom: 0;
 }
@@ -344,8 +360,9 @@ form .contact_button {
 .closeCarrousel {
   width: 30px;
   height: 30px;
+  margin: 20px;
   align-self: flex-end;
-  margin-right: 70px;
+  justify-self: flex-start;
 }
 
 .right {
@@ -360,7 +377,8 @@ form .contact_button {
 
 .mainPicTitle {
   color: #901c1c;
-  margin: 20px 0 0 150px;
+  left: 50px;
+  margin: 20px 0 20px 50px;
   font-weight: 700;
   font-size: 1.4em;
   padding: 0;

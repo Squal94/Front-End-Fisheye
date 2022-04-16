@@ -71,9 +71,8 @@ function carrouselModal(data, array) {
   const left = document.createElement("img");
   left.classList.add("left");
   left.setAttribute("src", "assets/icons/chevron-left-solid.svg");
-  const mainPic = document.createElement("img");
+  const mainPic = document.createElement("div");
   mainPic.classList.add("mainPic");
-  mainPic.setAttribute("src", data.src);
   const right = document.createElement("img");
   right.classList.add("right");
   right.setAttribute("src", "assets/icons/chevron-right-solid.svg");
@@ -85,34 +84,86 @@ function carrouselModal(data, array) {
   carrouselConteneur.appendChild(mainPicConteneur);
   mainPicConteneur.appendChild(left);
   mainPicConteneur.appendChild(mainPic);
+  if (titleInArray[0].image) {
+    const pic = document.createElement("img");
+    pic.classList.add("pic");
+    pic.setAttribute("src", data.src);
+    mainPic.appendChild(pic);
+  } else {
+    const video = document.createElement("video");
+    video.classList.add("video");
+    video.setAttribute("src", data.src);
+    video.setAttribute("controls", "");
+    mainPic.appendChild(video);
+  }
   mainPicConteneur.appendChild(right);
   carrouselConteneur.appendChild(mainPicTitle);
   //------------- Fonctionnement de la modal-----------------
 
   right.addEventListener("click", () => {
+    const mainPic = document.querySelector(".mainPic");
     if (positionInArray == array.length - 1) {
       right.classList.add("opacity");
+      right.setAttribute(
+        "alt",
+        "fin de la galerie ,vous pouvez faire un retour sur la touche gauche ou quitter avec echap"
+      );
     } else {
       positionInArray = ++positionInArray;
-      const picture = `assets/medias/${array[positionInArray].photographerId}/${array[positionInArray].image}`;
-      mainPic.setAttribute("src", picture);
-      mainPicTitle.innerHTML = array[positionInArray].title;
+      mainPic.removeChild(mainPic.childNodes[0]);
+      if ("image" in array[positionInArray]) {
+        const pic = document.createElement("img");
+        const source = `assets/medias/${array[positionInArray].photographerId}/${array[positionInArray].image}`;
+        pic.classList.add("pic");
+        pic.setAttribute("src", source);
+        mainPic.appendChild(pic);
+        mainPicTitle.innerHTML = array[positionInArray].title;
+      } else {
+        const video = document.createElement("video");
+        const source = `assets/medias/${array[positionInArray].photographerId}/${array[positionInArray].video}`;
+        video.classList.add("video");
+        video.setAttribute("src", source);
+        video.setAttribute("controls", "");
+        mainPic.appendChild(video);
+        mainPicTitle.innerHTML = array[positionInArray].title;
+      }
     }
     if (left.classList.contains("opacity") == true) {
       left.classList.remove("opacity");
+      left.removeAttribute("alt");
     }
   });
   left.addEventListener("click", () => {
+    const mainPic = document.querySelector(".mainPic");
     if (positionInArray == 0) {
       left.classList.add("opacity");
+      left.setAttribute(
+        "alt",
+        "début de la galerie ,vous pouvez avancer sur la touche droite ou quitter avec echap"
+      );
     } else {
       positionInArray = --positionInArray;
-      const picture = `assets/medias/${array[positionInArray].photographerId}/${array[positionInArray].image}`;
-      mainPic.setAttribute("src", picture);
-      mainPicTitle.innerHTML = array[positionInArray].title;
+      mainPic.removeChild(mainPic.childNodes[0]);
+      if ("image" in array[positionInArray]) {
+        const pic = document.createElement("img");
+        const source = `assets/medias/${array[positionInArray].photographerId}/${array[positionInArray].image}`;
+        pic.classList.add("pic");
+        pic.setAttribute("src", source);
+        mainPic.appendChild(pic);
+        mainPicTitle.innerHTML = array[positionInArray].title;
+      } else {
+        const video = document.createElement("video");
+        const source = `assets/medias/${array[positionInArray].photographerId}/${array[positionInArray].video}`;
+        video.classList.add("video");
+        video.setAttribute("src", source);
+        video.setAttribute("controls", "");
+        mainPic.appendChild(video);
+        mainPicTitle.innerHTML = array[positionInArray].title;
+      }
     }
     if (right.classList.contains("opacity") == true) {
       right.classList.remove("opacity");
+      right.removeAttribute("alt");
     }
   });
 

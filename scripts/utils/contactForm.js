@@ -3,8 +3,8 @@ let focusables = [];
 let previousElementFocus = null;
 
 function displayModal() {
-  previousElementFocus = document.querySelector(":focus");
-  const modal = document.getElementById("contact_modal");
+  //previousElementFocus = document.querySelector(":focus");
+  //const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", false);
   modal.setAttribute("aria-modal", true);
@@ -18,7 +18,7 @@ function closeModal() {
   modal.setAttribute("tabindex", "-1");
   modal.setAttribute("aria-hidden", true);
   modal.setAttribute("aria-modal", false);
-  document.querySelector(".logo").focus();
+  //document.querySelector(".logo").focus();
 }
 
 //---------------------- Modal formulaire ----------------------
