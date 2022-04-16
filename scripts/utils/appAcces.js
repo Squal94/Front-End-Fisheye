@@ -157,7 +157,7 @@ function tabsModalPics() {
       modal.style.display = "none";
       modal.setAttribute("aria-hidden", true);
       modal.setAttribute("aria-modal", false);
-      modal.removeChild(carrouselConteneur);
+      if (carrouselConteneur) modal.removeChild(carrouselConteneur);
     }
 
     if (e.key === "ArrowRight" && modal !== null) {
@@ -191,10 +191,11 @@ function focusInModal(e) {
 
 function tabsModalFormulaire() {
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" || (e.key === "Esc" && modal !== null)) {
-      closeModal();
+    const formModal = document.querySelector("#contact_modal");
+    if (e.key === "Escape" || (e.key === "Esc" && formModal !== null)) {
+      closeModal(e);
     }
-    if (e.key === "Tab" && modal !== null) {
+    if (e.key === "Tab" && formModal !== null) {
       focusInModal(e);
     }
   });

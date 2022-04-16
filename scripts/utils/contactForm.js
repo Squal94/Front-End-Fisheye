@@ -8,15 +8,17 @@ function displayModal() {
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", false);
   modal.setAttribute("aria-modal", true);
+  modal.setAttribute("tabindex", "0");
   tabsModalFormulaire();
 }
 
 function closeModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
+  modal.setAttribute("tabindex", "-1");
   modal.setAttribute("aria-hidden", true);
   modal.setAttribute("aria-modal", false);
-  //document.querySelector(".logo").focus();
+  document.querySelector(".logo").focus();
 }
 
 //---------------------- Modal formulaire ----------------------
