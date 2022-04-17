@@ -107,11 +107,14 @@ function tabsPhotographer(root) {
           index = i === testarray.length - 1 ? 0 : i + 1;
         }
       } else if (e.key === "Tab") {
-        if ((index = i === testarray.length - 1 ? 0 : i + 1)) {
-          e.preventDefault();
-        } else if ((index = testarray.length - 1)) {
-          e.preventDefault();
-          index = 0;
+        if (modal.getAttribute("aria-modal") === "true") {
+        } else {
+          if ((index = i === testarray.length - 1 ? 0 : i + 1)) {
+            e.preventDefault();
+          } else if ((index = testarray.length - 1)) {
+            e.preventDefault();
+            index = 0;
+          }
         }
       } else if (e.key === "ArrowLeft") {
         if (modal.getAttribute("aria-modal") === "true") {
@@ -188,14 +191,17 @@ function focusInModal(e) {
   }
   focusables[indexSelect].focus();
 }
-
 function tabsModalFormulaire() {
   window.addEventListener("keydown", (e) => {
-    const formModal = document.querySelector("#contact_modal");
-    if (e.key === "Escape" || (e.key === "Esc" && formModal !== null)) {
-      closeModal(e);
+    const formModal = document
+      .querySelector("#contact_modal")
+      .getAttribute("aria-modal");
+    console.log(formModal);
+    if (e.key === "Escape" || (e.key === "Esc" && formModal === "true")) {
+      closeModal();
     }
-    if (e.key === "Tab" && formModal !== null) {
+    if (e.key === "Tab" && formModal === "true") {
+      console.log(formModal);
       focusInModal(e);
     }
   });

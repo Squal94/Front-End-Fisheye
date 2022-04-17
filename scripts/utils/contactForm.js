@@ -4,12 +4,11 @@ let previousElementFocus = null;
 
 function displayModal() {
   //previousElementFocus = document.querySelector(":focus");
-  //const modal = document.getElementById("contact_modal");
+  const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", false);
   modal.setAttribute("aria-modal", true);
   modal.setAttribute("tabindex", "0");
-  tabsModalFormulaire();
 }
 
 function closeModal() {
@@ -93,4 +92,5 @@ function modalFormulaire(data) {
   //---------- Accessibilité formulaire ----------
   target = document.querySelector("#contact_modal");
   focusables = Array.from(target.querySelectorAll(focusableSelector));
+  tabsModalFormulaire();
 }

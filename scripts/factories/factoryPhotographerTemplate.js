@@ -97,11 +97,9 @@ function selectionImageModal(data) {
       if (this.querySelector("img")) {
         picLink = this.querySelector("img");
         picId = picLink.getAttribute("class");
-        console.log(picLink);
       } else {
         picLink = this.querySelector("video");
         picId = picLink.getAttribute("class");
-        console.log(picLink);
       }
       let returnId = sessionStorage.selectId;
       let arrayTemp = data.filter((obj) => obj.photographerId == returnId);
