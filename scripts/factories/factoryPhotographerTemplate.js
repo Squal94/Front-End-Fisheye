@@ -23,7 +23,11 @@ function picCard(data) {
     const figcaption = document.createElement("figcaption");
     const picTitle = document.createElement("p");
     picTitle.classList.add("pInfo");
-    picTitle.textContent = title;
+    if (data.video) {
+      picTitle.textContent = `${title} (Video)`;
+    } else if (data.image) {
+      picTitle.textContent = title;
+    }
     const coeurLike = document.createElement("div");
     coeurLike.classList.add("coeurLike");
     const like = document.createElement("div");
@@ -52,9 +56,8 @@ function picCard(data) {
       video.setAttribute("src", videoSrc);
       video.setAttribute(
         "alt",
-        `Titre de l'image : ${title} ,prise le ${date}, avec un nombre de likes de ${likes}.`
+        `Titre de l'image : Video ${title} ,prise le ${date}, avec un nombre de likes de ${likes}.`
       );
-      video.setAttribute("controls", "");
       figure.appendChild(aLink);
       aLink.appendChild(video);
     } else if (data.image) {
@@ -65,7 +68,7 @@ function picCard(data) {
       pic.setAttribute("src", pictureSrc);
       pic.setAttribute(
         "alt",
-        `Titre de l'image : ${title} ,prise le ${date}, avec un nombre de likes de ${likes}. `
+        `Titre de l'image : Photo ${title} ,prise le ${date}, avec un nombre de likes de ${likes}. `
       );
       figure.appendChild(aLink);
       aLink.appendChild(pic);

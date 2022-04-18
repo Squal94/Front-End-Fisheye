@@ -47,7 +47,7 @@ function trieArrayGallerie(data) {
     array.forEach((element) => {
       picCard(element).getUserCardGallery(element);
     });
-    selectionImageModal(data);
+    selectionImageModal(arrayTemp);
     tabsPhotographer(root);
   }
   arrayChoice(arrayTemp, gallery);

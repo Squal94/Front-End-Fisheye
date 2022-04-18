@@ -23,7 +23,10 @@ function Tabs(root) {
 
     tab.addEventListener("keyup", (e) => {
       let index = null;
-      if (e.key === "ArrowRight") {
+      if (e.key === "Enter") {
+        currentTab = tab;
+        currentTab.click();
+      } else if (e.key === "ArrowRight") {
         index = i === tabs.length - 1 ? 0 : i + 1;
       } else if (e.key === "ArrowLeft") {
         index = i === 0 ? tabs.length - 1 : i - 1;
