@@ -70,6 +70,7 @@ function Tabs(root) {
 }
 
 function tabsPhotographer(root) {
+  const linkLogo = document.querySelector(".linkLogo");
   root.setAttribute("role", "tablist");
   const arrayFigure = Array.from(root.children);
   let testarray = [];
@@ -115,8 +116,8 @@ function tabsPhotographer(root) {
           if ((index = i === testarray.length - 1 ? 0 : i + 1)) {
             e.preventDefault();
           } else if ((index = testarray.length - 1)) {
-            e.preventDefault();
             index = 0;
+            linkLogo.focus();
           }
         }
       } else if (e.key === "ArrowLeft") {
