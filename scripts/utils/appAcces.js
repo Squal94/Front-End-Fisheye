@@ -160,12 +160,12 @@ function tabsPhotographer(root) {
 function tabsModalPics() {
   window.addEventListener("keydown", (e) => {
     const carrouselConteneur = document.querySelector("div.carrouselConteneur");
-    const mainPicTitle = document.querySelector(".mainPicTitle");
+    const carrouselModal = document.querySelector(".carrouselModal");
     if (e.key === "Escape" || e.key === "Esc") {
       modal.style.display = "none";
       modal.setAttribute("aria-hidden", true);
       modal.setAttribute("aria-modal", false);
-      mainPicTitle.removeAttribute("tabindex");
+      carrouselModal.removeAttribute("tabindex");
       if (carrouselConteneur) modal.removeChild(carrouselConteneur);
     }
 

@@ -174,6 +174,7 @@ function carrouselModal(data, array) {
     target.setAttribute("aria-hidden", true);
     target.setAttribute("aria-modal", false);
     target.removeChild(carrouselConteneur);
+    target.removeAttribute("tabindex");
   });
 }
 
