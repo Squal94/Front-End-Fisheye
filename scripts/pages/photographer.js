@@ -142,6 +142,8 @@ async function initPhotographer() {
   const { medias } = await getMedias();
   selectInfo(photographers, medias);
   trieArrayGallerie(medias);
+  tabsSelect();
+  tabsModalPics();
 }
 
 initPhotographer();

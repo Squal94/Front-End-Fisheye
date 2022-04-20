@@ -178,8 +178,6 @@ function tabsModalPics() {
   });
 }
 
-tabsModalPics();
-
 function focusInModal(e) {
   const formulaireConteneur = document.querySelector("#contact_modal");
   e.preventDefault();
@@ -224,5 +222,3 @@ function tabsSelect() {
     }
   });
 }
-
-tabsSelect();
