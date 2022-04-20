@@ -83,7 +83,6 @@ function photographGallery(data, medias) {
   //------ Partie Trie ------
   const galleryTrie = document.createElement("div");
   galleryTrie.classList.add("galleryPhotographer__galleryTrie");
-  galleryTrie.classList.add(`galleryPhotographer__galleryTrie--${medias.id}`);
   const labelTrie = document.createElement("label");
   labelTrie.textContent = "Trier par  ";
   labelTrie.setAttribute("for", "trie");
@@ -113,14 +112,12 @@ function photographGallery(data, medias) {
 
   const galleryPicsId = document.createElement("div");
   galleryPicsId.classList.add("galleryPhotographer__gallery");
-  galleryPicsId.classList.add(`galleryPhotographer__gallery--${medias.id}`);
   galleryName.appendChild(galleryPicsId);
 
   //------ Partie cumul vote------
 
   const cumulVote = document.createElement("div");
   cumulVote.classList.add("galleryPhotographer__cumul");
-  cumulVote.classList.add(`galleryPhotographer__cumulVote--${medias.id}`);
   galleryName.appendChild(cumulVote);
   const cumulTotal = document.createElement("p");
   cumulTotal.classList.add("cumulTotal");
