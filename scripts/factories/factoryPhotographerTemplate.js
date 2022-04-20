@@ -112,6 +112,8 @@ function selectionImageModal(data) {
       target.removeAttribute("aria-hidden");
       target.setAttribute("aria-modal", true);
       carrouselModal(picLink, arrayTemp);
+      target.setAttribute("tabindex", "0");
+      target.focus();
     };
   }
 }
