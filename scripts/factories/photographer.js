@@ -5,6 +5,7 @@ function photographerFactory(data) {
 
   function getUserCardDOM() {
     const article = document.createElement("article");
+    article.setAttribute("aria-label", `${name}`);
     const className = id;
     article.classList.add(className);
     article.classList.add("photographer");

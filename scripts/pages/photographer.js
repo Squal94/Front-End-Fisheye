@@ -22,7 +22,6 @@ async function getMedias() {
 // -------Cherche les infos du Photographe-------
 
 function selectInfo(photographers, medias) {
-  //let returnId = sessionStorage.selectId;
   let returnIndex = sessionStorage.selectIndex;
   let objetPhotographer = photographers[returnIndex];
   photographHeader(objetPhotographer);
@@ -37,7 +36,6 @@ function selectInfo(photographers, medias) {
 function photographHeader(data) {
   const photographHeader = document.querySelector(".photograph-header");
   const contactBtn = document.querySelector(".contact_button");
-
   //------ Partie photographer info ------
 
   const headerName = document.createElement("article");
@@ -67,7 +65,7 @@ function photographHeader(data) {
   const imgPhotographer = document.createElement("img");
   imgPhotographer.classList.add("imgPhotographer");
   imgPhotographer.setAttribute("src", picturePhotographer);
-  imgPhotographer.setAttribute("alt", "");
+  imgPhotographer.setAttribute("aria-label", `${data.name}`);
   headerPhoto.appendChild(imgPhotographer);
 }
 

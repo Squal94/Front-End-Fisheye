@@ -78,6 +78,7 @@ function carrouselModal(data, array) {
   right.setAttribute("src", "assets/icons/chevron-right-solid.svg");
   const mainPicTitle = document.createElement("h1");
   mainPicTitle.classList.add("mainPicTitle");
+  mainPicTitle.setAttribute("aria-live", "polite");
   mainPicTitle.innerHTML = titleInArray[0].title;
   carrouselModal.appendChild(carrouselConteneur);
   carrouselConteneur.appendChild(closeCarrousel);
@@ -104,8 +105,8 @@ function carrouselModal(data, array) {
     const mainPic = document.querySelector(".mainPic");
     if (positionInArray == array.length - 1) {
       right.classList.add("opacity");
-      right.setAttribute(
-        "alt",
+      mainPicTitle.setAttribute(
+        "aria-label",
         "fin de la galerie ,vous pouvez faire un retour sur la touche gauche ou quitter avec echap"
       );
     } else {
@@ -125,20 +126,20 @@ function carrouselModal(data, array) {
         video.setAttribute("src", source);
         video.setAttribute("controls", "");
         mainPic.appendChild(video);
-        mainPicTitle.innerHTML = array[positionInArray].title;
+        mainPicTitle.innerHTML = `${array[positionInArray].title} (Video) `;
       }
     }
     if (left.classList.contains("opacity") == true) {
       left.classList.remove("opacity");
-      left.removeAttribute("alt");
+      mainPicTitle.removeAttribute("aria-label");
     }
   });
   left.addEventListener("click", () => {
     const mainPic = document.querySelector(".mainPic");
     if (positionInArray == 0) {
       left.classList.add("opacity");
-      left.setAttribute(
-        "alt",
+      mainPicTitle.setAttribute(
+        "aria-label",
         "début de la galerie ,vous pouvez avancer sur la touche droite ou quitter avec echap"
       );
     } else {
@@ -158,12 +159,12 @@ function carrouselModal(data, array) {
         video.setAttribute("src", source);
         video.setAttribute("controls", "");
         mainPic.appendChild(video);
-        mainPicTitle.innerHTML = array[positionInArray].title;
+        mainPicTitle.innerHTML = `${array[positionInArray].title} (Video) `;
       }
     }
     if (right.classList.contains("opacity") == true) {
       right.classList.remove("opacity");
-      right.removeAttribute("alt");
+      mainPicTitle.removeAttribute("aria-label");
     }
   });
 
@@ -174,7 +175,6 @@ function carrouselModal(data, array) {
     target.setAttribute("aria-modal", false);
     target.removeChild(carrouselConteneur);
   });
-  tabsModalPics();
 }
 
 //-----------------Fonction pour selection du coeur et changement du like et Cumul Likes

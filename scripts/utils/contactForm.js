@@ -5,7 +5,7 @@ let previousElementFocus = null;
 function displayModal() {
   //previousElementFocus = document.querySelector(":focus");
   const modal = document.getElementById("contact_modal");
-  modal.style.display = "block";
+  modal.style.display = "flex";
   modal.setAttribute("aria-hidden", false);
   modal.setAttribute("aria-modal", true);
   modal.setAttribute("tabindex", "0");

@@ -160,21 +160,25 @@ function tabsPhotographer(root) {
 function tabsModalPics() {
   window.addEventListener("keydown", (e) => {
     const carrouselConteneur = document.querySelector("div.carrouselConteneur");
+    const mainPicTitle = document.querySelector(".mainPicTitle");
     if (e.key === "Escape" || e.key === "Esc") {
       modal.style.display = "none";
       modal.setAttribute("aria-hidden", true);
       modal.setAttribute("aria-modal", false);
+      mainPicTitle.removeAttribute("tabindex");
       if (carrouselConteneur) modal.removeChild(carrouselConteneur);
     }
 
-    if (e.key === "ArrowRight" && modal !== null) {
-      carrouselConteneur.querySelector(".right").click();
+    if (e.key === "ArrowRight" && modal.getAttribute("aria-modal") === "true") {
+      document.querySelector(".right").click();
     }
-    if (e.key === "ArrowLeft" && modal !== null) {
-      carrouselConteneur.querySelector(".left").click();
+    if (e.key === "ArrowLeft" && modal.getAttribute("aria-modal") === "true") {
+      document.querySelector(".left").click();
     }
   });
 }
+
+tabsModalPics();
 
 function focusInModal(e) {
   const formulaireConteneur = document.querySelector("#contact_modal");
@@ -200,13 +204,25 @@ function tabsModalFormulaire() {
     const formModal = document
       .querySelector("#contact_modal")
       .getAttribute("aria-modal");
-    console.log(formModal);
     if (e.key === "Escape" || (e.key === "Esc" && formModal === "true")) {
       closeModal();
     }
     if (e.key === "Tab" && formModal === "true") {
-      console.log(formModal);
       focusInModal(e);
     }
   });
 }
+
+function tabsSelect() {
+  window.addEventListener("keydown", (e) => {
+    const selectTab = document.querySelector("#trie");
+    if (e.key === "ArrowRight") {
+      selectTab.click();
+    }
+    if (e.key === "ArrowLeft") {
+      selectTab.click();
+    }
+  });
+}
+
+tabsSelect();
