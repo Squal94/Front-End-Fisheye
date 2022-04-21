@@ -104,9 +104,10 @@ function modalFormulaire(data) {
   // ---------- Accessibilité formulaire ----------
   target = document.querySelector("#contact_modal");
   focusables = Array.from(target.querySelectorAll(focusableSelector));
-  tabsModalFormulaire();
-  // Affichage du resultat du formulaire dans la console
 
+  tabsModalFormulaire();
+
+  // Affichage du resultat du formulaire dans la console
   formulaire.addEventListener("submit", (e) => {
     console.log(document.querySelector("#firstName").value);
     console.log(document.querySelector("#lastName").value);
