@@ -9,6 +9,8 @@ async function getPhotographers() {
   };
 }
 
+//---------------importation des medias du .JSON---------------
+
 async function getMedias() {
   let medias = [];
   await fetch("data/photographers.json")
@@ -32,6 +34,11 @@ function selectInfo(photographers, medias) {
 // -------création du DOM page Photographer-------
 
 // ---------création  Photographer_Header---------
+/**
+ * Fonction de création de la bannière du photographe sélectionnée
+ * @param {objetPhotographer} data
+ * data = objetPhotographer qui récupère l'objet entier du photographe dans la base de données (.json)
+ */
 
 function photographHeader(data) {
   const photographHeader = document.querySelector(".photograph-header");
@@ -71,6 +78,14 @@ function photographHeader(data) {
 
 // ---------création  Photographer_Gallery---------
 
+/**
+ * Fonction de création de la bannière du photographe sélectionnée
+ * @param {objetPhotographer} data
+ *  data = objetPhotographer qui récupère l'objet entier du photographe dans la base de données (.json)
+ * @param {medias} medias
+ *  la valeur de data est : "medias" qui est représenté par le tableau de toutes les images et vidéos d'un photographe récupéré dans la base de données(.json)
+ */
+
 function photographGallery(data, medias) {
   const photographMain = document.getElementById("main");
 
@@ -80,7 +95,7 @@ function photographGallery(data, medias) {
   galleryName.classList.add("galleryPhotographer");
   photographMain.appendChild(galleryName);
 
-  //------ Partie Trie ------
+  //------ création  de la balise select et option Partie Tri ------
   const galleryTrie = document.createElement("div");
   galleryTrie.classList.add("galleryPhotographer__galleryTrie");
   const labelTrie = document.createElement("label");
@@ -97,6 +112,7 @@ function photographGallery(data, medias) {
   optiondate.setAttribute("value", "date");
   optiondate.textContent = "Date";
   const optiontitle = document.createElement("option");
+  // création des balises dans le DOM
   optiontitle.setAttribute("value", "title");
   optiontitle.textContent = "Title";
   galleryTrie.appendChild(labelTrie);
@@ -123,7 +139,7 @@ function photographGallery(data, medias) {
   cumulTotal.classList.add("cumulTotal");
   const cumulLikes = cumulLikesPhotographer(medias);
   const coeurlLikes =
-    "<img src='assets/icons/coeurLikes.png' class='coeurLikes'/>";
+    "<img src='assets/icons/coeurLikes.png' class='coeurLikes' aria-label= 'Image representant un coeur'/>";
   cumulTotal.innerHTML = `${cumulLikes} ${coeurlLikes}`;
   cumulVote.appendChild(cumulTotal);
   const prixJour = document.createElement("p");
@@ -132,7 +148,7 @@ function photographGallery(data, medias) {
   cumulVote.appendChild(prixJour);
 }
 
-// ------Initialisation des donnée et du code------
+// ------Initialisation des données et du code------
 
 async function initPhotographer() {
   const { photographers } = await getPhotographers();

@@ -1,10 +1,19 @@
 let modal = document.querySelector("aside");
 
+/**
+ * Fonction pour l'accessibilité de la page index.js
+ * @param {photographersSection} root
+ * root Représente le point de départ de la box (boite) à sélectionner
+ */
 function Tabs(root) {
   root.setAttribute("role", "tablist");
+
+  // création du tableau à partir des enfants de l'element parent root
   const tabs = Array.from(root.children);
   const hash = window.location.hash.replace("#", "");
   let currentTab = tabs[0];
+
+  // affectation des arias attribue aux valeurs false
   tabs.forEach((tab, i) => {
     let id = tab.getAttribute("class");
 
@@ -14,6 +23,7 @@ function Tabs(root) {
     if (id === hash) {
       currentTab = tab;
     }
+
     // On ajoute les attributs aria sur l'onglet
     tab.setAttribute("role", "tab");
     tab.setAttribute("aria-selected", "false");
@@ -21,6 +31,7 @@ function Tabs(root) {
     tab.setAttribute("aria-controls", id);
     tab.setAttribute("hidden", "hidden");
 
+    // création de l'event à l'appui des touches du clavier et les actions à effectuer ensuite .
     tab.addEventListener("keyup", (e) => {
       let index = null;
       if (e.key === "Enter") {
@@ -40,11 +51,13 @@ function Tabs(root) {
         tabs[index].focus();
       }
     });
+
     // Navigation à la souris
     tab.addEventListener("click", (e) => {
       e.preventDefault();
       this.activate(tab);
     });
+
     // Initialisation de activate au tabs 0
     activate(tabs[0], false);
   });
@@ -68,20 +81,30 @@ function Tabs(root) {
     }
   }
 }
-
+/**
+ * Fonction pour l'accessibilité de la page photographer.js
+ * @param {photographersSection} root
+ * root Représente le point de départ de la box (boite) à sélectionner
+ */
 function tabsPhotographer(root) {
   const linkLogo = document.querySelector(".linkLogo");
   root.setAttribute("role", "tablist");
+
+  // création du tableau a partir des enfants de l'element parent root
   const arrayFigure = Array.from(root.children);
   let testarray = [];
   const hash = window.location.hash.replace("#", "");
   let currentTab = testarray[0];
+
+  // création du nouveau tableau à partir du tableau précédent
   arrayFigure.forEach((figure) => {
     let testA = figure.querySelector("a");
     testarray.push(testA);
     let testCoeur = figure.querySelector(".coeur");
     testarray.push(testCoeur);
   });
+
+  // affectation des arias attribue aux valeurs false
   testarray.forEach((tab, i) => {
     let id = tab.getAttribute("class");
 
@@ -97,6 +120,7 @@ function tabsPhotographer(root) {
     tab.setAttribute("tabindex", "-1");
     tab.setAttribute("aria-controls", id);
 
+    // création de l'event à l'appui des touches du clavier et les actions à effectuer ensuite .
     tab.addEventListener("keydown", (e) => {
       let index = null;
       if (e.key === "Enter") {
@@ -157,6 +181,11 @@ function tabsPhotographer(root) {
   }
 }
 
+/**
+ * Fonction pour la navigation dans carrouselModal
+ * @param {}
+ *
+ */
 function tabsModalPics() {
   window.addEventListener("keydown", (e) => {
     const carrouselConteneur = document.querySelector("div.carrouselConteneur");
@@ -168,7 +197,7 @@ function tabsModalPics() {
       carrouselModal.removeAttribute("tabindex");
       if (carrouselConteneur) modal.removeChild(carrouselConteneur);
     }
-
+    // Attribution des valeurs au click pour les touches clavier (lié aux events de la fonction carrouselModal)
     if (e.key === "ArrowRight" && modal.getAttribute("aria-modal") === "true") {
       document.querySelector(".right").click();
     }
@@ -181,6 +210,7 @@ function tabsModalPics() {
 function focusInModal(e) {
   const formulaireConteneur = document.querySelector("#contact_modal");
   e.preventDefault();
+  // petite fonction qui permet de recuperer l'index dans un tableau de l'element selectionné
   let indexSelect = focusables.findIndex(
     (f) => f === formulaireConteneur.querySelector(":focus")
   );
@@ -197,11 +227,19 @@ function focusInModal(e) {
   }
   focusables[indexSelect].focus();
 }
+
+/**
+ * Fonction pour la navigation dans le Formulaire
+ * @param {}
+ *
+ */
 function tabsModalFormulaire() {
   window.addEventListener("keydown", (e) => {
     const formModal = document
       .querySelector("#contact_modal")
       .getAttribute("aria-modal");
+
+    //  Attribution des fonctions closeModal et focusInModal aux touches clavier
     if (e.key === "Escape" || (e.key === "Esc" && formModal === "true")) {
       closeModal();
     }

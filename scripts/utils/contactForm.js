@@ -1,7 +1,11 @@
+// création des variables et du tableau des elements qui vont être focussable
 const focusableSelector = "button,input,textarea";
 let focusables = [];
 let previousElementFocus = null;
 
+/**
+ * Fonction d'ouverture du formulaire
+ */
 function displayModal() {
   //previousElementFocus = document.querySelector(":focus");
   const modal = document.getElementById("contact_modal");
@@ -11,6 +15,9 @@ function displayModal() {
   modal.setAttribute("tabindex", "0");
 }
 
+/**
+ * Fonction de fermeture du formulaire
+ */
 function closeModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
@@ -21,7 +28,9 @@ function closeModal() {
 }
 
 //---------------------- Modal formulaire ----------------------
-
+/**
+ * Fonction de création de la modal formulaire
+ */
 function modalFormulaire(data) {
   //-------------- Query selector fixe ---------------
 
@@ -33,7 +42,7 @@ function modalFormulaire(data) {
 
   //------- Creation des elements du formulaire --------
 
-  //------ Formulaire ajourt d'attribut ------
+  //------ Formulaire ajout d'attributs ------
 
   formulaire.setAttribute("action", "#");
   formulaire.setAttribute("method", "post");

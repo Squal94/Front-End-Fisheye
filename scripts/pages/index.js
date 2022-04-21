@@ -1,5 +1,7 @@
 //------------------ Affichage --------------------
 
+//Récuperation des objets photographer du .json
+
 async function getPhotographers() {
   let photographers = [];
   await fetch("data/photographers.json")
@@ -10,6 +12,7 @@ async function getPhotographers() {
   };
 }
 
+//Création de la galerie des photographes de la page index
 async function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
 
@@ -20,7 +23,7 @@ async function displayData(photographers) {
     selectPhtographers(photographer, photographers);
   });
 }
-
+// initialisation de la page
 async function init() {
   const photographersSection = document.querySelector(".photographer_section");
   const { photographers } = await getPhotographers();
@@ -32,6 +35,11 @@ init();
 
 //---------Selectionner Photographe---------
 
+/**
+ * fonction de récupération de photographerId et son index, et envoi pour la page photographer id et index dans le local storage.
+ * @param {photographer} data
+ * @param {photographers} arr
+ */
 function selectPhtographers(data, arr) {
   const photographerId = data.id;
   const selectId = document.getElementsByClassName(photographerId).item(0);

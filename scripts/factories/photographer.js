@@ -1,8 +1,17 @@
+/**
+ * fonction template de création de carte par photographe pour la page index.html
+ * @param {photographer} data
+ *
+ * @returns name, picture, city, country, tagline, id, price, getUserCardDOM
+ */
+
 function photographerFactory(data) {
+  //Attribution des valeurs nécessaires à la navigation dans l'objet photographer
   const { name, portrait, city, country, tagline, id, price } = data;
 
   const picture = `assets/photographers/${portrait}`;
 
+  // Fonction de création de la carte complète du photographe
   function getUserCardDOM() {
     const article = document.createElement("article");
     article.setAttribute("aria-label", `${name}`);
@@ -23,6 +32,8 @@ function photographerFactory(data) {
     pInfo.textContent = `${city} , ${country}`;
     pTag.textContent = tagline;
     pPrice.textContent = `${price}€/jour`;
+
+    // génération dans le DOM des balises
     article.appendChild(img);
     article.appendChild(h2);
     article.appendChild(boxInfo);
