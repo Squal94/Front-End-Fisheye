@@ -18,11 +18,11 @@ function trieArrayGallerie(data) {
   trieId.addEventListener("change", () => {
     const selectChoice = trieId.selectedIndex;
     const ValeurChoice = trieId.options[selectChoice].value;
+
     if (ValeurChoice == "popularite") {
       arrayTemp = arrayTemp.sort((a, b) => (a.likes > b.likes ? 1 : -1));
 
       // suppression du DOM des anciennes picCard après tri
-
       while (gallery.firstChild) {
         gallery.removeChild(gallery.firstChild);
       }
@@ -55,11 +55,13 @@ function trieArrayGallerie(data) {
       arrayChoice(arrayTemp, gallery);
     }
   });
+
   // fonction de génération des nouvelles picCard
   function arrayChoice(array, root) {
     array.forEach((element) => {
       picCard(element).getUserCardGallery(element);
     });
+
     selectionImageModal(arrayTemp);
     tabsPhotographer(root);
   }
@@ -84,21 +86,28 @@ function carrouselModal(data, array) {
   //------------- Création de la modal (balise et class)-----------------
 
   const carrouselModal = document.querySelector(".carrouselModal");
+
   const carrouselConteneur = document.createElement("div");
   carrouselConteneur.classList.add("carrouselConteneur");
+
   const closeCarrousel = document.createElement("img");
   closeCarrousel.classList.add("closeCarrousel");
   closeCarrousel.setAttribute("src", "assets/icons/xmark-solid.svg");
+
   const mainPicConteneur = document.createElement("div");
   mainPicConteneur.classList.add("mainPicConteneur");
+
   const left = document.createElement("img");
   left.classList.add("left");
   left.setAttribute("src", "assets/icons/chevron-left-solid.svg");
+
   const mainPic = document.createElement("div");
   mainPic.classList.add("mainPic");
+
   const right = document.createElement("img");
   right.classList.add("right");
   right.setAttribute("src", "assets/icons/chevron-right-solid.svg");
+
   const mainPicTitle = document.createElement("h1");
   mainPicTitle.classList.add("mainPicTitle");
   mainPicTitle.setAttribute("aria-live", "polite");
@@ -138,7 +147,7 @@ function carrouselModal(data, array) {
         "fin de la galerie ,vous pouvez faire un retour sur la touche gauche ou quitter avec echap"
       );
     } else {
-      // Déplacement dans la galerie sur la droite et remove et ajout du nouvel element
+      // Déplacement dans la galerie sur la droite et remove et ajout du nouvel element img ou video
 
       positionInArray = ++positionInArray;
       mainPic.removeChild(mainPic.childNodes[0]);

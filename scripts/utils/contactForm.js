@@ -44,8 +44,9 @@ function modalFormulaire(data) {
 
   //------ Formulaire ajout d'attributs ------
 
-  formulaire.setAttribute("action", "#");
-  formulaire.setAttribute("method", "post");
+  formulaire.setAttribute("action", "");
+  formulaire.setAttribute("method", "get");
+  formulaire.setAttribute("name", "formulaire");
 
   //---------- Nom du photographe ------------
   const formPhotographerName = document.createElement("h2");
@@ -97,9 +98,20 @@ function modalFormulaire(data) {
   //----- Mettre bouton en fin de formulaire -----
 
   formulaire.insertBefore(btnClassButton, formTextAreaInput.nextSibling);
+  btnClassButton.setAttribute("type", "submit");
+  btnClassButton.setAttribute("for", "formulaire");
 
-  //---------- Accessibilité formulaire ----------
+  // ---------- Accessibilité formulaire ----------
   target = document.querySelector("#contact_modal");
   focusables = Array.from(target.querySelectorAll(focusableSelector));
   tabsModalFormulaire();
+  // Affichage du resultat du formulaire dans la console
+
+  formulaire.addEventListener("submit", (e) => {
+    console.log(document.querySelector("#firstName").value);
+    console.log(document.querySelector("#lastName").value);
+    console.log(document.querySelector("#email").value);
+    console.log(document.querySelector("#message").value);
+    e.preventDefault();
+  });
 }

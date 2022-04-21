@@ -83,7 +83,7 @@ function Tabs(root) {
 }
 /**
  * Fonction pour l'accessibilité de la page photographer.js
- * @param {photographersSection} root
+ * @param {gallery} root
  * root Représente le point de départ de la box (boite) à sélectionner
  */
 function tabsPhotographer(root) {

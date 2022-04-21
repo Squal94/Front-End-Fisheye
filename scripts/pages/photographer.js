@@ -98,23 +98,29 @@ function photographGallery(data, medias) {
   //------ création  de la balise select et option Partie Tri ------
   const galleryTrie = document.createElement("div");
   galleryTrie.classList.add("galleryPhotographer__galleryTrie");
+
   const labelTrie = document.createElement("label");
   labelTrie.textContent = "Trier par  ";
   labelTrie.setAttribute("for", "trie");
+
   const selectTrie = document.createElement("form");
   const selectBtn = document.createElement("select");
   selectBtn.setAttribute("id", "trie");
   selectBtn.setAttribute("name", "trie");
+
   const optionPopularite = document.createElement("option");
   optionPopularite.setAttribute("value", "popularite");
   optionPopularite.textContent = "Popularite";
+
   const optiondate = document.createElement("option");
   optiondate.setAttribute("value", "date");
   optiondate.textContent = "Date";
+
   const optiontitle = document.createElement("option");
-  // création des balises dans le DOM
   optiontitle.setAttribute("value", "title");
   optiontitle.textContent = "Title";
+
+  // création des balises dans le DOM
   galleryTrie.appendChild(labelTrie);
   galleryTrie.appendChild(selectTrie);
   selectTrie.appendChild(selectBtn);

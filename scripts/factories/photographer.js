@@ -15,20 +15,27 @@ function photographerFactory(data) {
   function getUserCardDOM() {
     const article = document.createElement("article");
     article.setAttribute("aria-label", `${name}`);
+
     const className = id;
     article.classList.add(className);
     article.classList.add("photographer");
+
     const img = document.createElement("img");
     img.classList.add("portrait");
+    img.setAttribute("src", picture);
+
     const boxInfo = document.createElement("div");
     boxInfo.classList.add("boxInfo");
+
     const pInfo = document.createElement("p");
     pInfo.classList.add("pInfo");
+
     const pTag = document.createElement("p");
     const pPrice = document.createElement("p");
-    img.setAttribute("src", picture);
+
     const h2 = document.createElement("h2");
     h2.textContent = name;
+
     pInfo.textContent = `${city} , ${country}`;
     pTag.textContent = tagline;
     pPrice.textContent = `${price}€/jour`;

@@ -54,19 +54,23 @@ function picCard(data) {
 
     const coeurLike = document.createElement("div");
     coeurLike.classList.add("coeurLike");
+
     const like = document.createElement("div");
     like.classList.add(`like${id}`);
     like.classList.add("pInfo");
     like.textContent = likes;
+
     const coeur = document.createElement("div");
     coeur.classList.add("coeur");
     coeur.classList.add(`coeur${id}`);
     coeur.setAttribute("aria-label", "likes");
+
     const coeurFirst = document.createElement("div");
     coeurFirst.classList.add("coeurFirst");
     coeurFirst.classList.add(`coeurFirst${id}`);
     const coeurlLike = `<i class="far fa-heart"></i>`;
     coeurFirst.innerHTML = coeurlLike;
+
     const coeurSecond = document.createElement("div");
     coeurSecond.classList.add("coeurSecond");
     coeurSecond.classList.add(`coeurSecond${id}`);
